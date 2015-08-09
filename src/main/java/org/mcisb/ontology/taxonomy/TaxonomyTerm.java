@@ -19,7 +19,7 @@ import org.mcisb.util.*;
 import org.mcisb.util.io.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class TaxonomyTerm extends OntologyTerm
@@ -30,7 +30,7 @@ public class TaxonomyTerm extends OntologyTerm
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 *
+	 * 
 	 * @param id
 	 * @throws Exception
 	 */
@@ -38,17 +38,18 @@ public class TaxonomyTerm extends OntologyTerm
 	{
 		super( OntologyFactory.getOntology( Ontology.TAXONOMY ), id );
 	}
-	
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.mcisb.ontology.OntologyTerm#doInitialise()
 	 */
 	@Override
 	protected void doInitialise()
 	{
 		final String NAME = "(?<=<title>Taxonomy browser \\().*(?=\\))"; //$NON-NLS-1$
-		
-		try( final InputStream is = new URL( getLink() ).openStream() )
+
+		try ( final InputStream is = new URL( getLink() ).openStream() )
 		{
 			final String html = new String( StreamReader.read( is ), Charset.defaultCharset() );
 			name = CollectionUtils.getFirst( RegularExpressionUtils.getMatches( html, NAME ) );

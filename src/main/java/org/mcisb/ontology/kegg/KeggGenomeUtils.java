@@ -40,10 +40,10 @@ public class KeggGenomeUtils extends KeggUtils
 		{
 			utils = new KeggGenomeUtils();
 		}
-		
+
 		return utils;
 	}
-	
+
 	/**
 	 * 
 	 * @throws Exception
@@ -52,22 +52,22 @@ public class KeggGenomeUtils extends KeggUtils
 	{
 		super( Ontology.KEGG_GENOME );
 	}
-	
+
 	/**
 	 * 
 	 * @param taxonomyId
 	 * @return OntologyTerm
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public OntologyTerm getOrganism( final int taxonomyId ) throws Exception
 	{
 		BufferedReader reader = null;
-		
+
 		try
 		{
 			reader = new BufferedReader( new InputStreamReader( new URL( "http://rest.kegg.jp/find/genome/" + taxonomyId ).openStream(), Charset.defaultCharset() ) ); //$NON-NLS-1$
 			String line = null;
-			
+
 			while( ( line = reader.readLine() ) != null )
 			{
 				if( line.contains( " " + taxonomyId + ";" ) ) //$NON-NLS-1$ //$NON-NLS-2$
@@ -76,7 +76,7 @@ public class KeggGenomeUtils extends KeggUtils
 					return getOntologyTerm( organismId );
 				}
 			}
-			
+
 			return null;
 		}
 		finally
@@ -96,20 +96,20 @@ public class KeggGenomeUtils extends KeggUtils
 	public Collection<OntologyTerm> getOrganisms() throws Exception
 	{
 		final Collection<OntologyTerm> organisms = new TreeSet<>();
-		
+
 		for( String id : getOrganismIds() )
 		{
 			final OntologyTerm ontologyTerm = getOntologyTerm( id );
-			
+
 			if( ontologyTerm != null )
 			{
 				organisms.add( ontologyTerm );
 			}
 		}
-			
+
 		return organisms;
 	}
-	
+
 	/**
 	 * 
 	 * @return String[]
@@ -120,18 +120,18 @@ public class KeggGenomeUtils extends KeggUtils
 		final int ID_INDEX = 1;
 		final Collection<String> organismIds = new TreeSet<>();
 		BufferedReader reader = null;
-		
+
 		try
 		{
 			reader = new BufferedReader( new InputStreamReader( new URL( "http://rest.kegg.jp/list/organism" ).openStream(), Charset.defaultCharset() ) ); //$NON-NLS-1$
 			String line = null;
-			
+
 			while( ( line = reader.readLine() ) != null )
 			{
 				final String[] tokens = line.split( "\t" ); //$NON-NLS-1$
 				organismIds.add( tokens[ ID_INDEX ] );
 			}
-			
+
 			return organismIds.toArray( new String[ organismIds.size() ] );
 		}
 		finally

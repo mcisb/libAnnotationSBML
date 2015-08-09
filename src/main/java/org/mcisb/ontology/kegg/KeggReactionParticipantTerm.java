@@ -15,7 +15,7 @@ import java.util.*;
 import org.mcisb.util.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public abstract class KeggReactionParticipantTerm extends KeggTerm
@@ -24,14 +24,14 @@ public abstract class KeggReactionParticipantTerm extends KeggTerm
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 
 	 */
 	private final Collection<String> reactions = new HashSet<>();
-	
+
 	/**
-	 *
+	 * 
 	 * @param ontologyName
 	 * @param id
 	 * @param idPrefix
@@ -41,9 +41,9 @@ public abstract class KeggReactionParticipantTerm extends KeggTerm
 	{
 		super( ontologyName, id, idPrefix );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @return Collection
 	 * @throws Exception
 	 */
@@ -52,28 +52,30 @@ public abstract class KeggReactionParticipantTerm extends KeggTerm
 		init();
 		return reactions;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
-	 * @see org.mcisb.ontology.kegg.KeggTerm#parseProperty(java.lang.String, java.util.List)
+	 * 
+	 * @see org.mcisb.ontology.kegg.KeggTerm#parseProperty(java.lang.String,
+	 * java.util.List)
 	 */
 	@Override
 	protected void parseProperty( final String propertyName, final List<String> values ) throws Exception
 	{
 		super.parseProperty( propertyName, values );
-		
+
 		final String ALL_REAC = "REACTION|ALL_REAC"; //$NON-NLS-1$
 		final String REACTION_PATTERN = "R(\\d{5})"; //$NON-NLS-1$
-		
+
 		if( propertyName.matches( ALL_REAC ) )
 		{
 			for( int i = 0; i < values.size(); i++ )
 			{
 				final Collection<String> matches = RegularExpressionUtils.getMatches( values.get( i ), REACTION_PATTERN );
-				
-		        for( Iterator<String> iterator = matches.iterator(); iterator.hasNext(); )
+
+				for( Iterator<String> iterator = matches.iterator(); iterator.hasNext(); )
 				{
-		        	reactions.add( iterator.next() );
+					reactions.add( iterator.next() );
 				}
 			}
 		}

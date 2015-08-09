@@ -25,15 +25,15 @@ public class OntologyTermFactory
 	 * 
 	 */
 	private final OntologyUtils utils = OntologyUtils.getInstance();
-	
+
 	/**
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public OntologyTermFactory() throws Exception
 	{
 		// No implementation.
 	}
-	
+
 	/**
 	 * 
 	 * @param ontologyName
@@ -45,7 +45,7 @@ public class OntologyTermFactory
 	{
 		final Collection<Collection<String>> values = new ArrayList<>();
 		final OntologySource ontologySource = utils.getOntologySource( ontologyName );
-		
+
 		if( ontologySource != null )
 		{
 			for( final OntologyTerm ontologyTerm : ontologySource.search( identifier ) )
@@ -53,10 +53,10 @@ public class OntologyTermFactory
 				values.add( Arrays.asList( ontologyTerm.toUri(), ontologyTerm.getName() ) );
 			}
 		}
-			 
+
 		return getJson( values );
 	}
-	
+
 	/**
 	 * 
 	 * @param urn
@@ -67,15 +67,15 @@ public class OntologyTermFactory
 	{
 		final OntologyTerm ontologyTerm = getOntologyTerm( urn );
 		String link = null;
-		
+
 		if( ontologyTerm != null )
 		{
 			link = ontologyTerm.getLink();
 		}
-			 
+
 		return getJson( link );
 	}
-	
+
 	/**
 	 * 
 	 * @param urn
@@ -86,15 +86,15 @@ public class OntologyTermFactory
 	{
 		final OntologyTerm ontologyTerm = getOntologyTerm( urn );
 		String name = null;
-		
+
 		if( ontologyTerm != null )
 		{
 			name = ontologyTerm.getName();
 		}
-			 
+
 		return getJson( name );
 	}
-	
+
 	/**
 	 * 
 	 * @param urn
@@ -105,15 +105,15 @@ public class OntologyTermFactory
 	{
 		final OntologyTerm ontologyTerm = getOntologyTerm( urn );
 		final Collection<String> synonyms = new ArrayList<>();
-		
+
 		if( ontologyTerm != null )
 		{
 			synonyms.addAll( ontologyTerm.getSynonyms() );
 		}
-			 
+
 		return getJson( synonyms );
 	}
-	
+
 	/**
 	 * 
 	 * @param urn
@@ -124,7 +124,7 @@ public class OntologyTermFactory
 	{
 		final Collection<String> xrefIds = new ArrayList<>();
 		final OntologyTerm ontologyTerm = getOntologyTerm( urn );
-		
+
 		if( ontologyTerm != null )
 		{
 			for( final OntologyTerm xref : ontologyTerm.getXrefs().keySet() )
@@ -132,10 +132,10 @@ public class OntologyTermFactory
 				xrefIds.add( xref.toUri() );
 			}
 		}
-			 
+
 		return getJson( xrefIds );
 	}
-	
+
 	/**
 	 * 
 	 * @param urn
@@ -146,7 +146,7 @@ public class OntologyTermFactory
 	{
 		final Collection<String> keggReactionUrns = new ArrayList<>();
 		final OntologyTerm ontologyTerm = getOntologyTerm( urn );
-		
+
 		if( ontologyTerm != null && ontologyTerm instanceof KeggReactionParticipantTerm )
 		{
 			for( final String reactionId : ( (KeggReactionParticipantTerm)ontologyTerm ).getReactions() )
@@ -154,20 +154,20 @@ public class OntologyTermFactory
 				keggReactionUrns.add( KeggReactionUtils.getInstance().getOntologyTermFromId( reactionId ).toUri() );
 			}
 		}
-			 
+
 		return getJson( keggReactionUrns );
 	}
-	
+
 	/**
-	 * @param urn 
+	 * @param urn
 	 * @return OntologyTerm
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	private OntologyTerm getOntologyTerm( final String urn ) throws Exception
 	{
 		return utils.getOntologyTerm( urn );
 	}
-	
+
 	/**
 	 * 
 	 * @param key
@@ -178,20 +178,20 @@ public class OntologyTermFactory
 	{
 		return JSONValue.toJSONString( value );
 	}
-	
+
 	/**
 	 * @param args
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public static void main( String[] args ) throws Exception
 	{
 		final String SEARCH = "search"; //$NON-NLS-1$
 		final Method[] methods = OntologyTermFactory.class.getDeclaredMethods();
-		
+
 		for( int i = 0; i < methods.length; i++ )
 		{
 			final String methodName = methods[ i ].getName();
-			
+
 			if( methodName.equals( args[ 0 ] ) )
 			{
 				if( methodName.equals( SEARCH ) )
@@ -200,7 +200,7 @@ public class OntologyTermFactory
 					OntologySource ontologySource = null;
 					final StringBuffer ontologyName = new StringBuffer();
 					final StringBuffer identifier = new StringBuffer();
-					
+
 					for( int j = 1; j < args.length; j++ )
 					{
 						if( ontologySource != null )
@@ -215,7 +215,7 @@ public class OntologyTermFactory
 							ontologySource = OntologyUtils.getInstance().getOntologySource( ontologyName.toString().trim() );
 						}
 					}
-					
+
 					System.out.println( methods[ i ].invoke( OntologyTermFactory.class.newInstance(), new Object[] { ontologyName.toString().trim(), identifier.toString().trim() } ) );
 				}
 				else
@@ -223,7 +223,7 @@ public class OntologyTermFactory
 					final Object[] parameters = Arrays.copyOfRange( args, 1, args.length );
 					System.out.println( methods[ i ].invoke( OntologyTermFactory.class.newInstance(), parameters ) );
 				}
-				
+
 				break;
 			}
 		}

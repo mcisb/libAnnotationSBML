@@ -37,24 +37,26 @@ public class KeggGeneTerm extends KeggTerm
 		super( Ontology.KEGG_GENES, id, null );
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
-	 * @see org.mcisb.ontology.kegg.KeggTerm#parseProperty(java.lang.String, java.util.List)
+	 * 
+	 * @see org.mcisb.ontology.kegg.KeggTerm#parseProperty(java.lang.String,
+	 * java.util.List)
 	 */
 	@Override
 	protected void parseProperty( String propertyName, List<String> values ) throws Exception
 	{
 		final String DEFINITION = "DEFINITION"; //$NON-NLS-1$
 		final String ORTHOLOGY = "ORTHOLOGY"; //$NON-NLS-1$
-		
+
 		super.parseProperty( propertyName, values );
-		
+
 		if( propertyName.equals( DEFINITION ) )
 		{
 			for( String value : values )
 			{
 				final String ecTerm = CollectionUtils.getFirst( RegularExpressionUtils.getMatches( value, RegularExpressionUtils.EC_REGEX ) );
-				
+
 				if( ecTerm != null )
 				{
 					addXref( EcUtils.getInstance().getOntologyTerm( ecTerm ), CVTerm.Type.BIOLOGICAL_QUALIFIER, CVTerm.Qualifier.BQB_IS_VERSION_OF );
@@ -66,7 +68,7 @@ public class KeggGeneTerm extends KeggTerm
 			for( String value : values )
 			{
 				final String ecTerm = CollectionUtils.getFirst( RegularExpressionUtils.getMatches( value, RegularExpressionUtils.EC_REGEX ) );
-				
+
 				if( ecTerm != null )
 				{
 					addXref( EcUtils.getInstance().getOntologyTerm( ecTerm ), CVTerm.Type.BIOLOGICAL_QUALIFIER, CVTerm.Qualifier.BQB_IS_VERSION_OF );
@@ -77,7 +79,9 @@ public class KeggGeneTerm extends KeggTerm
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.mcisb.ontology.kegg.KeggTerm#addXref(org.mcisb.ontology.OntologyTerm)
+	 * 
+	 * @see
+	 * org.mcisb.ontology.kegg.KeggTerm#addXref(org.mcisb.ontology.OntologyTerm)
 	 */
 	@Override
 	protected void addXref( final OntologyTerm xref )

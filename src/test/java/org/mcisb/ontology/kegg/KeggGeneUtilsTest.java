@@ -17,7 +17,7 @@ import org.mcisb.ontology.*;
 import org.mcisb.ontology.ec.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class KeggGeneUtilsTest
@@ -26,18 +26,18 @@ public class KeggGeneUtilsTest
 	 * 
 	 */
 	private KeggGeneUtils utils = KeggGeneUtils.getInstance();
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	public KeggGeneUtilsTest() throws Exception
 	{
 		// No implementation.
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -46,9 +46,9 @@ public class KeggGeneUtilsTest
 		final OntologyTerm ontologyTerm = utils.getOntologyTerm( "sce:YFR053C" ); //$NON-NLS-1$
 		test( ontologyTerm );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -57,9 +57,9 @@ public class KeggGeneUtilsTest
 		final OntologyTerm ontologyTerm = utils.getOntologyTerm( "sce:YLR262C-A" ); //$NON-NLS-1$
 		test2( ontologyTerm );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@SuppressWarnings("static-method")
@@ -69,9 +69,9 @@ public class KeggGeneUtilsTest
 		final OntologyTerm ontologyTerm = OntologyUtils.getInstance().getOntologyTerm( "http://www.genome.jp/kegg/genes/#sce:YLR262C-A" ); //$NON-NLS-1$
 		test2( ontologyTerm );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -80,9 +80,9 @@ public class KeggGeneUtilsTest
 		final OntologyTerm ontologyTerm = utils.getOntologyTerm( "hsa:6547" ); //$NON-NLS-1$
 		test3( ontologyTerm );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param ontologyTerm
 	 * @throws Exception
 	 */
@@ -92,9 +92,9 @@ public class KeggGeneUtilsTest
 		Assert.assertTrue( ontologyTerm.getName().equals( NAME ) );
 		Assert.assertTrue( ontologyTerm.getXrefs().keySet().contains( EcUtils.getInstance().getOntologyTerm( "2.7.1.1" ) ) ); //$NON-NLS-1$
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param ontologyTerm
 	 * @throws Exception
 	 */
@@ -103,9 +103,9 @@ public class KeggGeneUtilsTest
 		final String NAME = "TMA7"; //$NON-NLS-1$
 		Assert.assertTrue( ontologyTerm.getName().equals( NAME ) );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param ontologyTerm
 	 * @throws Exception
 	 */

@@ -15,7 +15,7 @@ import org.mcisb.ontology.*;
 import org.sbml.jsbml.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class SboTerm extends OntologyTerm
@@ -24,19 +24,19 @@ public class SboTerm extends OntologyTerm
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 
 	 */
 	private String rawMath = null;
-	
+
 	/**
 	 * 
 	 */
 	private String math = null;
-	
+
 	/**
-	 *
+	 * 
 	 * @param id
 	 * @throws Exception
 	 */
@@ -53,15 +53,16 @@ public class SboTerm extends OntologyTerm
 	{
 		return Integer.parseInt( id.substring( id.indexOf( OntologyTerm.COLON ) + OntologyTerm.COLON.length() ) );
 	}
+
 	/**
-	 *
+	 * 
 	 * @return String
 	 */
 	public String getFormula()
 	{
 		return JSBML.formulaToString( JSBML.readMathMLFromString( math ) );
 	}
-	
+
 	/**
 	 * 
 	 * @return math
@@ -70,7 +71,7 @@ public class SboTerm extends OntologyTerm
 	{
 		return math;
 	}
-	
+
 	/**
 	 * 
 	 * @return math
@@ -79,9 +80,9 @@ public class SboTerm extends OntologyTerm
 	{
 		return rawMath;
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param math
 	 */
 	public void setMath( final String math )
@@ -89,7 +90,7 @@ public class SboTerm extends OntologyTerm
 		final String DUPLICATE_NAMESPACE = "xmlns=\"http://www.w3.org/1998/Math/MathML\" xmlns=\"http://www.w3.org/1998/Math/MathML\""; //$NON-NLS-1$
 		final String SINGLE_NAMESPACE = "xmlns=\"http://www.w3.org/1998/Math/MathML\""; //$NON-NLS-1$
 		this.rawMath = math.replaceAll( DUPLICATE_NAMESPACE, SINGLE_NAMESPACE );
-		
+
 		final String INVALID_CI_PATTERN = "<ci definitionURL=\"http://biomodels.net/SBO/#SBO:(\\d)+\">"; //$NON-NLS-1$
 		final String VALID_CI_PATTERN = "<ci>"; //$NON-NLS-1$
 		final String SEMANTICS_START_PATTERN = "<semantics xmlns:ns2=\"http://www.w3.org/1998/Math/MathML\" definitionURL=\"http://biomodels.net/SBO/#SBO:(\\d)+\">"; //$NON-NLS-1$

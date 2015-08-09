@@ -27,12 +27,12 @@ public class OntologyLookupServiceClient implements Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 
 	 */
 	private static Query query;
-	
+
 	/**
 	 * 
 	 * @return Map
@@ -44,9 +44,9 @@ public class OntologyLookupServiceClient implements Serializable
 	{
 		return getQuery().getOntologyNames();
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param partialName
 	 * @param ontologyName
 	 * @param reverseKeyOrder
@@ -59,7 +59,7 @@ public class OntologyLookupServiceClient implements Serializable
 	{
 		return getQuery().getTermsByName( partialName, ontologyName, reverseKeyOrder );
 	}
-	
+
 	/**
 	 * 
 	 * @param termId
@@ -72,7 +72,7 @@ public class OntologyLookupServiceClient implements Serializable
 	{
 		return getQuery().getTermById( termId, ontologyName );
 	}
-	
+
 	/**
 	 * 
 	 * @param termId
@@ -98,7 +98,7 @@ public class OntologyLookupServiceClient implements Serializable
 		{
 			query = new QueryServiceLocator().getOntologyQuery();
 		}
-		
+
 		return query;
 	}
 }

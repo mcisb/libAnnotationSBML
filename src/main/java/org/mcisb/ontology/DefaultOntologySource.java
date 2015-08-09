@@ -12,13 +12,13 @@
 package org.mcisb.ontology;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class DefaultOntologySource extends OntologySource
-{	
+{
 	/**
-	 *
+	 * 
 	 * @param ontologyName
 	 * @throws Exception
 	 */

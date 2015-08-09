@@ -16,7 +16,7 @@ import org.junit.*;
 import org.mcisb.ontology.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class KeggGenomeUtilsTest
@@ -25,18 +25,18 @@ public class KeggGenomeUtilsTest
 	 * 
 	 */
 	private KeggGenomeUtils utils = KeggGenomeUtils.getInstance();
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	public KeggGenomeUtilsTest() throws Exception
 	{
 		// No implementation.
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -45,7 +45,7 @@ public class KeggGenomeUtilsTest
 		final OntologyTerm ontologyTerm = utils.getOntologyTerm( "sce" ); //$NON-NLS-1$
 		test( ontologyTerm );
 	}
-	
+
 	/**
 	 * 
 	 * @throws Exception
@@ -56,7 +56,7 @@ public class KeggGenomeUtilsTest
 		// Assert.assertTrue( utils.getOrganism( 4565 ).getId().equals( "etae" ) ); //$NON-NLS-1$
 		Assert.assertTrue( utils.getOrganism( 559292 ).getId().equals( "sce" ) ); //$NON-NLS-1$
 	}
-	
+
 	/**
 	 * 
 	 * @throws Exception
@@ -67,9 +67,9 @@ public class KeggGenomeUtilsTest
 	{
 		Assert.assertTrue( Arrays.binarySearch( KeggGenomeUtils.getOrganismIds(), "etae" ) != -1 ); //$NON-NLS-1$
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param ontologyTerm
 	 * @throws Exception
 	 */

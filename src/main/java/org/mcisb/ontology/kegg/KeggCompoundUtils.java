@@ -24,12 +24,12 @@ public class KeggCompoundUtils extends KeggUtils
 	 * 
 	 */
 	private static final int MINIMUM_SEARCH_STRING_LENGTH = 3;
-	
+
 	/**
 	 * 
 	 */
 	private static KeggCompoundUtils utils = null;
-	
+
 	/**
 	 * 
 	 * @return ChebiUtils
@@ -41,10 +41,10 @@ public class KeggCompoundUtils extends KeggUtils
 		{
 			utils = new KeggCompoundUtils();
 		}
-		
+
 		return utils;
 	}
-	
+
 	/**
 	 * 
 	 * @throws Exception
@@ -53,9 +53,10 @@ public class KeggCompoundUtils extends KeggUtils
 	{
 		super( Ontology.KEGG_COMPOUND );
 	}
-	
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.mcisb.ontology.OntologySource#search(java.lang.String)
 	 */
 	@Override
@@ -65,7 +66,7 @@ public class KeggCompoundUtils extends KeggUtils
 		{
 			return super.search( getCompoundsByName( identifier ) );
 		}
-		
+
 		return new HashSet<>();
 	}
 }

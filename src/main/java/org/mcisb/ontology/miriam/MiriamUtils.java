@@ -15,13 +15,13 @@ import java.util.*;
 import org.mcisb.ontology.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public abstract class MiriamUtils
 {
 	/**
-	 *
+	 * 
 	 * @return Map
 	 * @throws Exception
 	 */
@@ -29,9 +29,9 @@ public abstract class MiriamUtils
 	{
 		return new DownloadMiriamUtils().getOntologiesMap();
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @return Map
 	 * @throws Exception
 	 */

@@ -29,42 +29,42 @@ public class SboUtils extends OntologySource
 	 * 
 	 */
 	public final static int ENZYME = 14;
-	
+
 	/**
 	 * 
 	 */
 	public final static int SUBSTRATE = 15;
-	
+
 	/**
 	 * 
 	 */
 	public final static int CATALYTIC_RATE_CONSTANT = 25;
-	
+
 	/**
 	 * 
 	 */
 	public final static int MICHAELIS_CONSTANT = 27;
-	
+
 	/**
 	 * 
 	 */
 	public final static int HILL_COEFFICIENT = 190;
-	
+
 	/**
 	 * 
 	 */
 	public final static int ENZYMATIC_RATE_LAW_FOR_IRREVERSIBLE_NON_MODULATED_NON_INTERACTING_UNIREACTANT_ENZYMES = 28;
-	
+
 	/**
 	 * 
 	 */
 	public final static int BIOCHEMICAL_REACTION = 176;
-	
+
 	/**
 	 * 
 	 */
 	public final static int TRANSPORT_REACTION = 185;
-	
+
 	/**
 	 * 
 	 */
@@ -74,27 +74,27 @@ public class SboUtils extends OntologySource
 	 * 
 	 */
 	public final static int COMPARTMENT = 290;
-	
+
 	/**
 	 * 
 	 */
 	public final static int PROTEIN_COMPLEX = 297;
-	
+
 	/**
 	 * 
 	 */
 	public final static int SIMPLE_CHEMICAL = 247;
-	
+
 	/**
 	 * 
 	 */
 	public final static int RIBONUCLEIC_ACID = 250;
-	
+
 	/**
 	 * 
 	 */
 	public final static int POLYPEPTIDE_CHAIN = 252;
-	
+
 	/**
 	 * 
 	 */
@@ -104,24 +104,24 @@ public class SboUtils extends OntologySource
 	 * 
 	 */
 	public final static int SUBSTRATE_CONCENTRATION = 515;
-	
+
 	/**
 	 * 
 	 */
 	public final static int PROTEIN_COMPLEX_FORMATION_REACTION = 526;
-	
+
 	/**
 	 * 
 	 */
 	private final SBOLink link = new SBOLink();
-	
+
 	/**
 	 * 
 	 */
 	private static SboUtils utils = null;
-	
+
 	/**
-	 *
+	 * 
 	 * @return OntologyUtils
 	 * @throws Exception
 	 */
@@ -131,59 +131,63 @@ public class SboUtils extends OntologySource
 		{
 			utils = new SboUtils();
 		}
-		
+
 		return utils;
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	private SboUtils() throws Exception
 	{
 		super( Ontology.SBO );
 	}
-	
+
 	/*
 	 * (non-Javadoc)
-	 * @see org.mcisb.ontology.OntologySource#getOntologyTermFromId(java.lang.String)
+	 * 
+	 * @see
+	 * org.mcisb.ontology.OntologySource#getOntologyTermFromId(java.lang.String)
 	 */
 	@Override
 	protected OntologyTerm getOntologyTermFromId( final String id ) throws Exception
 	{
 		String normalisedId = id;
-		
+
 		if( id.contains( Ontology.ID_SEPARATOR ) )
 		{
 			normalisedId = id.substring( id.indexOf( Ontology.ID_SEPARATOR ) + Ontology.ID_SEPARATOR.length() );
 		}
-		
+
 		return getOntologyTerm( Integer.parseInt( normalisedId ) );
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.mcisb.ontology.OntologySource#search(java.lang.String, java.lang.String)
+	 * 
+	 * @see org.mcisb.ontology.OntologySource#search(java.lang.String,
+	 * java.lang.String)
 	 */
 	@Override
 	public Collection<OntologyTerm> search( final String identifier ) throws Exception
 	{
-		final List<Term> terms = link.search( identifier);
+		final List<Term> terms = link.search( identifier );
 		final Collection<OntologyTerm> ontologyTerms = new ArrayList<>();
-		
+
 		if( terms != null )
 		{
 			for( Term term : terms )
-    		{
-    			ontologyTerms.add( getOntologyTerm( term ) );
-    		}
+			{
+				ontologyTerms.add( getOntologyTerm( term ) );
+			}
 		}
-		
+
 		return ontologyTerms;
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param sboTerm
 	 * @return OntologyTerm
 	 * @throws Exception
@@ -192,7 +196,7 @@ public class SboUtils extends OntologySource
 	{
 		return getOntologyTerm( link.convertId( Integer.valueOf( sboTerm ) ) );
 	}
-	
+
 	/**
 	 * 
 	 * @param id
@@ -203,7 +207,7 @@ public class SboUtils extends OntologySource
 		final List<Term> terms = link.getTree( link.convertId( Integer.valueOf( id ) ) );
 		return terms.toArray( new Term[ terms.size() ] );
 	}
-	
+
 	/**
 	 * 
 	 * @param termId
@@ -214,7 +218,7 @@ public class SboUtils extends OntologySource
 	{
 		return link.isChildOf( link.convertId( Integer.valueOf( termId ) ), link.convertId( Integer.valueOf( parentId ) ) );
 	}
-	
+
 	/**
 	 * 
 	 * @param term
@@ -228,7 +232,7 @@ public class SboUtils extends OntologySource
 		ontologyTerm.setMath( term.getMathml() );
 		return ontologyTerm;
 	}
-	
+
 	/**
 	 * 
 	 * @param math
@@ -240,7 +244,11 @@ public class SboUtils extends OntologySource
 	{
 		final String CI = "ci"; //$NON-NLS-1$
 		final String PREFIX = "http://biomodels.net/SBO/#"; //$NON-NLS-1$
-		final String attributeValue = PREFIX + getOntologyTerm( sboTerm ).getId().replaceAll( OntologyTerm.ENCODED_COLON, OntologyTerm.COLON ); // SBO is using old-style URLs
+		final String attributeValue = PREFIX + getOntologyTerm( sboTerm ).getId().replaceAll( OntologyTerm.ENCODED_COLON, OntologyTerm.COLON ); // SBO
+																																				// is
+																																				// using
+																																				// old-style
+																																				// URLs
 		return CollectionUtils.getFirst( XmlUtils.getElementValues( CI, attributeValue, new ByteArrayInputStream( math.getBytes() ) ) );
 	}
 }

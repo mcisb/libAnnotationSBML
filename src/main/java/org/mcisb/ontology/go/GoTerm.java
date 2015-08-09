@@ -16,7 +16,7 @@ import javax.xml.rpc.*;
 import org.mcisb.ontology.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class GoTerm extends OntologyTerm
@@ -28,7 +28,7 @@ public class GoTerm extends OntologyTerm
 
 	/**
 	 * 
-	 *
+	 * 
 	 * @param id
 	 * @throws Exception
 	 */
@@ -39,6 +39,7 @@ public class GoTerm extends OntologyTerm
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.mcisb.ontology.OntologyTerm#doInitialise()
 	 */
 	@Override

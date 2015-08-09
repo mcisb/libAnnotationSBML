@@ -15,7 +15,7 @@ import org.mcisb.ontology.*;
 import org.mcisb.ontology.kegg.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class EcUtils extends KeggUtils
@@ -24,9 +24,9 @@ public class EcUtils extends KeggUtils
 	 * 
 	 */
 	private static EcUtils utils = null;
-	
+
 	/**
-	 *
+	 * 
 	 * @return EcTermUtils
 	 * @throws Exception
 	 */
@@ -36,12 +36,12 @@ public class EcUtils extends KeggUtils
 		{
 			utils = new EcUtils();
 		}
-		
+
 		return utils;
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	private EcUtils() throws Exception
@@ -51,20 +51,22 @@ public class EcUtils extends KeggUtils
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.mcisb.ontology.kegg.KeggUtils#getOntologyTermFromId(java.lang.String)
+	 * 
+	 * @see
+	 * org.mcisb.ontology.kegg.KeggUtils#getOntologyTermFromId(java.lang.String)
 	 */
 	@Override
 	public OntologyTerm getOntologyTermFromId( final String identifier ) throws Exception
 	{
 		return new EcTerm( identifier );
 	}
-	
+
 	/**
 	 * 
 	 * @param term1
 	 * @param term2
 	 * @return boolean
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public boolean matches( final String term1, final String term2 ) throws Exception
 	{

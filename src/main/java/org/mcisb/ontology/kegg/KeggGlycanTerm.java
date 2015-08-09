@@ -25,13 +25,14 @@ public class KeggGlycanTerm extends KeggReactionParticipantTerm
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	/**
 	 * 
 	 */
 	private static final String ID_PREFIX = "gl" + OntologyTerm.ENCODED_COLON; //$NON-NLS-1$
-	
+
 	/**
-	 *
+	 * 
 	 * @param id
 	 * @throws Exception
 	 */
@@ -39,10 +40,13 @@ public class KeggGlycanTerm extends KeggReactionParticipantTerm
 	{
 		super( Ontology.KEGG_GLYCAN, id, ID_PREFIX );
 	}
-	
+
 	/*
 	 * (non-Javadoc)
-	 * @see org.mcisb.ontology.kegg.KeggReactionParticipantTerm#parseProperty(java.lang.String, java.util.List)
+	 * 
+	 * @see
+	 * org.mcisb.ontology.kegg.KeggReactionParticipantTerm#parseProperty(java
+	 * .lang.String, java.util.List)
 	 */
 	@Override
 	protected void parseProperty( final String propertyName, final List<String> values ) throws Exception
@@ -51,22 +55,22 @@ public class KeggGlycanTerm extends KeggReactionParticipantTerm
 		final String REMARK = "REMARK"; //$NON-NLS-1$
 		final String SEMI_COLON = ";"; //$NON-NLS-1$
 		final String EMPTY_STRING = ""; //$NON-NLS-1$
-		
+
 		if( propertyName.equals( NAME ) )
 		{
 			final List<String> allNames = new ArrayList<>();
-			
+
 			for( Iterator<String> iterator = values.iterator(); iterator.hasNext(); )
 			{
 				allNames.add( iterator.next() );
 			}
-			
+
 			name = CollectionUtils.getFirst( allNames ).replace( SEMI_COLON, EMPTY_STRING ).trim();
-		
+
 			for( int i = 1; i < allNames.size(); i++ )
-       		{
-    			addSynonym( allNames.get( i ).replace( SEMI_COLON, EMPTY_STRING ).trim() );
-       		}
+			{
+				addSynonym( allNames.get( i ).replace( SEMI_COLON, EMPTY_STRING ).trim() );
+			}
 		}
 		else if( propertyName.equals( REMARK ) )
 		{

@@ -17,7 +17,7 @@ import org.sbml.jsbml.*;
 
 /**
  * 
- *
+ * 
  * @author Neil Swainston
  */
 public class OntologyTermTest
@@ -26,12 +26,12 @@ public class OntologyTermTest
 	 * 
 	 */
 	private final static String ONTOLOGY_NAME = Ontology.CHEBI;
-	
+
 	/**
 	 * 
 	 */
 	private final static String TERM_NAME = "TERM_NAME"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
@@ -41,45 +41,45 @@ public class OntologyTermTest
 	 * 
 	 */
 	private final static String LINK = "http://identifiers.org/chebi/TERM_ID"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	private final Collection<String> synonyms = Arrays.asList( TERM_ID, TERM_NAME, TERM_NAME, TERM_ID );
-	
+
 	/**
 	 * 
 	 */
 	private final OntologyTerm ontologyTerm = new OntologyTerm( OntologyFactory.getOntology( ONTOLOGY_NAME ), TERM_ID );
-	
+
 	/**
 	 * 
 	 */
 	private final OntologyTerm ontologyTerm2 = new OntologyTerm( OntologyFactory.getOntology( ONTOLOGY_NAME ), "Random" ); //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	private final OntologyTerm ontologyTerm3 = new OntologyTerm( OntologyFactory.getOntology( ONTOLOGY_NAME ), TERM_ID );
-	
+
 	/**
 	 * 
 	 */
 	private final OntologyTerm ontologyTerm4 = new OntologyTerm( OntologyFactory.getOntology( Ontology.EC ), TERM_ID );
-	
+
 	/**
 	 * 
 	 */
 	private final Collection<OntologyTerm> xrefs = Arrays.asList( ontologyTerm4, ontologyTerm2, ontologyTerm3, ontologyTerm2, ontologyTerm4, ontologyTerm3, ontologyTerm2, ontologyTerm2, ontologyTerm2, ontologyTerm4 );
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	public OntologyTermTest() throws Exception
 	{
 		ontologyTerm.setName( TERM_NAME );
-		
+
 		for( Iterator<String> iterator = synonyms.iterator(); iterator.hasNext(); )
 		{
 			ontologyTerm.addSynonym( iterator.next() );
@@ -89,47 +89,47 @@ public class OntologyTermTest
 			ontologyTerm.addXref( iterator.next(), CVTerm.Type.BIOLOGICAL_QUALIFIER, CVTerm.Qualifier.BQB_IS );
 		}
 	}
-	
+
 	/**
 	 *
 	 */
-	@Test 	
+	@Test
 	public void getId()
 	{
 		Assert.assertEquals( ontologyTerm.getId(), TERM_ID );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
-	@Test 
+	@Test
 	public void getName() throws Exception
 	{
 		Assert.assertEquals( ontologyTerm.getName(), TERM_NAME );
 	}
-	
+
 	/**
 	 *
 	 */
-	@Test 	
+	@Test
 	public void getOntology()
 	{
 		Assert.assertEquals( ontologyTerm.getOntology().getName(), ONTOLOGY_NAME );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
-	@Test 	
+	@Test
 	public void getSynonyms() throws Exception
 	{
 		final Collection<String> ontologySynoymns = ontologyTerm.getSynonyms();
 		Assert.assertTrue( ontologySynoymns.size() == 2 );
 		Assert.assertTrue( ontologySynoymns.containsAll( synonyms ) );
 	}
-	
+
 	/**
 	 *
 	 */
@@ -140,7 +140,7 @@ public class OntologyTermTest
 	}
 
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -150,7 +150,7 @@ public class OntologyTermTest
 		Assert.assertTrue( ontologyXrefs.size() == 3 );
 		Assert.assertTrue( ontologyXrefs.containsAll( xrefs ) );
 	}
-	
+
 	/**
 	 *
 	 */
@@ -162,7 +162,7 @@ public class OntologyTermTest
 		Assert.assertFalse( ontologyTerm.equals( ontologyTerm2 ) );
 		Assert.assertFalse( ontologyTerm.equals( ontologyTerm4 ) );
 	}
-	
+
 	/**
 	 *
 	 */
@@ -174,7 +174,7 @@ public class OntologyTermTest
 		Assert.assertFalse( ontologyTerm.hashCode() == ontologyTerm2.hashCode() );
 		Assert.assertFalse( ontologyTerm.hashCode() == ontologyTerm4.hashCode() );
 	}
-	
+
 	/**
 	 *
 	 */

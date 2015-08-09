@@ -27,8 +27,9 @@ public class OntologyTermList extends JList<Object>
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/* 
+	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see javax.swing.JTable#getToolTipText(java.awt.event.MouseEvent)
 	 */
 	@Override
@@ -36,14 +37,14 @@ public class OntologyTermList extends JList<Object>
 	{
 		final int UNDEFINED_INDEX = -1;
 		final int index = locationToIndex( event.getPoint() );
-			
+
 		if( index != UNDEFINED_INDEX )
 		{
-		    final Object object = getModel().getElementAt( index );
-		    
-		    if( object instanceof OntologyTerm )
-		    {
-		    	try
+			final Object object = getModel().getElementAt( index );
+
+			if( object instanceof OntologyTerm )
+			{
+				try
 				{
 					return CollectionUtils.toToolTip( ( (OntologyTerm)object ).getSynonyms() );
 				}
@@ -51,9 +52,9 @@ public class OntologyTermList extends JList<Object>
 				{
 					e.printStackTrace();
 				}
-		    }
+			}
 		}
-		
+
 		return null;
 	}
 }

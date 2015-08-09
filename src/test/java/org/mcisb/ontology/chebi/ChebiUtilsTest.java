@@ -17,7 +17,7 @@ import org.mcisb.ontology.*;
 import org.mcisb.util.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class ChebiUtilsTest
@@ -26,7 +26,7 @@ public class ChebiUtilsTest
 	 * 
 	 */
 	private final ChebiUtils utils = ChebiUtils.getInstance();
-	
+
 	/**
 	 * 
 	 * @throws Exception
@@ -35,7 +35,7 @@ public class ChebiUtilsTest
 	{
 		// No implementation.
 	}
-	
+
 	/**
 	 * @throws Exception
 	 */
@@ -45,7 +45,7 @@ public class ChebiUtilsTest
 		final ChebiTerm chebiTermValid = (ChebiTerm)utils.getOntologyTerm( "CHEBI:16908" ); //$NON-NLS-1$
 		Assert.assertTrue( chebiTermValid.isValid() );
 	}
-	
+
 	/**
 	 * @throws Exception
 	 */
@@ -55,7 +55,7 @@ public class ChebiUtilsTest
 		final ChebiTerm chebiTermInvalid = (ChebiTerm)utils.getOntologyTerm( "CHEBI:1690169088" ); //$NON-NLS-1$
 		Assert.assertFalse( chebiTermInvalid.isValid() );
 	}
-	
+
 	/**
 	 * @throws Exception
 	 */
@@ -65,7 +65,7 @@ public class ChebiUtilsTest
 		final ChebiTerm nadh = (ChebiTerm)utils.getOntologyTerm( "CHEBI:16908" ); //$NON-NLS-1$
 		Assert.assertTrue( nadh.getName().equals( "NADH" ) ); //$NON-NLS-1$
 	}
-	
+
 	/**
 	 * @throws Exception
 	 */
@@ -89,7 +89,7 @@ public class ChebiUtilsTest
 		Assert.assertTrue( term3.getSynonyms().contains( "6-S-Acetyldihydrolipoamide" ) ); //$NON-NLS-1$
 		Assert.assertTrue( term4.getSynonyms().contains( "6-S-Acetyldihydrolipoamide" ) ); //$NON-NLS-1$
 	}
-	
+
 	/**
 	 * @throws Exception
 	 */
@@ -99,9 +99,9 @@ public class ChebiUtilsTest
 		final ChebiTerm thiosulfate_1_minus = (ChebiTerm)utils.getOntologyTerm( "CHEBI:33541" ); //$NON-NLS-1$
 		Assert.assertTrue( thiosulfate_1_minus.getCharge() == NumberUtils.UNDEFINED );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -109,33 +109,33 @@ public class ChebiUtilsTest
 	{
 		final Set<OntologyTerm> ontologyTermsSet = new HashSet<>();
 		final List<OntologyTerm> ontologyTermsList = new ArrayList<>();
-		
+
 		ChebiTerm ontologyTerm = (ChebiTerm)utils.getOntologyTerm( "ethanol" ); //$NON-NLS-1$
 		ontologyTermsSet.add( ontologyTerm );
 		ontologyTermsList.add( ontologyTerm );
 		test( ontologyTerm );
-		
+
 		ontologyTerm = (ChebiTerm)utils.getOntologyTerm( "16236" ); //$NON-NLS-1$
 		ontologyTermsSet.add( ontologyTerm );
 		ontologyTermsList.add( ontologyTerm );
 		testFormula( ontologyTerm );
 		test( ontologyTerm );
-		
+
 		ontologyTerm = (ChebiTerm)utils.getOntologyTerm( "CHEBI:16236" ); //$NON-NLS-1$
 		ontologyTermsSet.add( ontologyTerm );
 		ontologyTermsList.add( ontologyTerm );
 		testCharge( ontologyTerm );
 		test( ontologyTerm );
-		
+
 		ontologyTerm = (ChebiTerm)utils.getOntologyTerm( "CHEBI%3A16236" ); //$NON-NLS-1$
 		ontologyTermsSet.add( ontologyTerm );
 		ontologyTermsList.add( ontologyTerm );
 		test( ontologyTerm );
-		
+
 		Assert.assertTrue( ontologyTermsSet.size() == 1 );
 		Assert.assertTrue( ontologyTermsList.size() == 4 );
 	}
-	
+
 	/**
 	 * @throws Exception
 	 */
@@ -147,12 +147,12 @@ public class ChebiUtilsTest
 		final ChebiTerm query3 = (ChebiTerm)utils.getOntologyTerm( "CHEBI:15422" ); //$NON-NLS-1$
 		final ChebiTerm target = (ChebiTerm)utils.getOntologyTerm( "CHEBI:36141" ); //$NON-NLS-1$
 		final Collection<String> relations = Arrays.asList( "is_a", "has_functional_parent" ); //$NON-NLS-1$ //$NON-NLS-2$
-		
+
 		Assert.assertTrue( utils.hasParent( query1, target, relations ) );
 		Assert.assertTrue( utils.hasParent( query2, target, relations ) );
 		Assert.assertFalse( utils.hasParent( query3, target, relations ) );
 	}
-	
+
 	/**
 	 * @throws Exception
 	 */
@@ -162,7 +162,7 @@ public class ChebiUtilsTest
 		final ChebiTerm proton = (ChebiTerm)utils.getOntologyTerm( "CHEBI:24636" ); //$NON-NLS-1$
 		Assert.assertTrue( proton.getFormula().equals( "H" ) ); //$NON-NLS-1$
 	}
-	
+
 	/**
 	 * @throws Exception
 	 */
@@ -172,7 +172,7 @@ public class ChebiUtilsTest
 		final ChebiTerm term = (ChebiTerm)utils.getOntologyTerm( "CHEBI:15633" ); //$NON-NLS-1$
 		Assert.assertTrue( term.getFormula().equals( "C19H21N7O6" ) ); //$NON-NLS-1$
 	}
-	
+
 	/**
 	 * @throws Exception
 	 */
@@ -180,17 +180,17 @@ public class ChebiUtilsTest
 	public void search() throws Exception
 	{
 		final int MAX_SEARCH_TERM_LENGTH = 1000;
-		final StringBuffer buffer = new StringBuffer( );
-		
+		final StringBuffer buffer = new StringBuffer();
+
 		for( int i = 0; i < MAX_SEARCH_TERM_LENGTH; i++ )
 		{
 			utils.search( buffer.toString() );
 			buffer.append( "a" ); //$NON-NLS-1$
 		}
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param ontologyTerm
 	 * @throws Exception
 	 */
@@ -211,9 +211,9 @@ public class ChebiUtilsTest
 		Assert.assertTrue( ontologyTerm.getInchi().equals( "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3" ) ); //$NON-NLS-1$
 		Assert.assertTrue( ontologyTerm.toUri().equals( "http://identifiers.org/chebi/CHEBI:16236" ) ); //$NON-NLS-1$
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param ontologyTerm
 	 * @throws Exception
 	 */
@@ -222,9 +222,9 @@ public class ChebiUtilsTest
 		final String formula = "C2H6O"; //$NON-NLS-1$
 		Assert.assertTrue( ontologyTerm.getFormula().equals( formula ) );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param ontologyTerm
 	 * @throws Exception
 	 */

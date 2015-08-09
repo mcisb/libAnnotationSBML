@@ -19,7 +19,7 @@ import org.mcisb.ontology.*;
 import org.mcisb.ui.util.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class OntologyTermDialog extends JDialog
@@ -33,32 +33,32 @@ public class OntologyTermDialog extends JDialog
 	 * 
 	 */
 	protected final JPanel mainPanel = new JPanel( new BorderLayout() );
-	
+
 	/**
 	 * 
 	 */
 	protected final transient DefaultDocumentListener documentListener = new DefaultDocumentListener();
-	
+
 	/**
 	 * 
 	 */
 	protected final OntologyTermPanel ontologyTermPanel;
-	
+
 	/**
 	 * 
 	 */
 	private final static int COLUMNS = 20;
-	
+
 	/**
 	 * 
 	 */
 	private final JTextField textField = new JTextField( COLUMNS );
-	
+
 	/**
 	 * 
 	 */
 	private boolean ok = true;
-	
+
 	/**
 	 * 
 	 * @param owner
@@ -70,15 +70,15 @@ public class OntologyTermDialog extends JDialog
 	public OntologyTermDialog( final Dialog owner, final String title, final boolean modal, final String message, final String searchTerm )
 	{
 		super( owner, title, modal );
-		
+
 		final ResourceBundle resourceBundle = ResourceBundle.getBundle( "org.mcisb.ui.ontology.messages" ); //$NON-NLS-1$
 
 		final GridBagPanel textPanel = new GridBagPanel();
-		
+
 		setSearchTerm( searchTerm );
-		
+
 		textField.getDocument().addDocumentListener( documentListener );
-		
+
 		textPanel.add( new JLabel( resourceBundle.getString( "OntologyTermDialog.searchPrompt" ) ), 0, 0, false, false, true, true, GridBagConstraints.NONE, 1 ); //$NON-NLS-1$
 		textPanel.add( textField, 1, 0, true, true, true, true, GridBagConstraints.HORIZONTAL, 1 );
 
@@ -86,20 +86,20 @@ public class OntologyTermDialog extends JDialog
 
 		mainPanel.add( textPanel, BorderLayout.CENTER );
 		mainPanel.add( ontologyTermPanel, BorderLayout.SOUTH );
-		
+
 		final JPanel buttonPanel = new JPanel();
 		buttonPanel.add( new JButton( new CloseAction( resourceBundle.getString( "OntologyTermDialog.ok" ), true ) ) ); //$NON-NLS-1$
 		buttonPanel.add( new JButton( new CloseAction( resourceBundle.getString( "OntologyTermDialog.cancel" ), false ) ) ); //$NON-NLS-1$
-		
+
 		final Container contentPane = getContentPane();
 		contentPane.setLayout( new BorderLayout() );
-		
+
 		contentPane.add( mainPanel, BorderLayout.CENTER );
 		contentPane.add( buttonPanel, BorderLayout.SOUTH );
-		
+
 		pack();
 	}
-	
+
 	/**
 	 * 
 	 * @param searchTerm
@@ -110,21 +110,21 @@ public class OntologyTermDialog extends JDialog
 		{
 			textField.setText( searchTerm );
 		}
-		
+
 		textField.setEnabled( searchTerm == null );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param ontologyTerms
 	 */
 	public void setOntologyTerms( final Collection<OntologyTerm> ontologyTerms )
 	{
 		ontologyTermPanel.setOntologyTerms( ontologyTerms );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @return OntologyTerm
 	 */
 	public OntologyTerm getOntologyTerm()
@@ -135,15 +135,16 @@ public class OntologyTermDialog extends JDialog
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.Window#dispose()
 	 */
 	@Override
 	public void dispose()
 	{
 		super.dispose();
-		
+
 		textField.getDocument().removeDocumentListener( documentListener );
-		
+
 		try
 		{
 			ontologyTermPanel.dispose();
@@ -155,7 +156,7 @@ public class OntologyTermDialog extends JDialog
 	}
 
 	/**
-	 *
+	 * 
 	 * @param okStatus
 	 */
 	void close( final boolean okStatus )
@@ -175,14 +176,14 @@ public class OntologyTermDialog extends JDialog
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
-		
+
 		/**
 		 * 
 		 */
 		private final boolean okStatus;
-		
+
 		/**
-		 *
+		 * 
 		 * @param name
 		 * @param okStatus
 		 */
@@ -191,10 +192,13 @@ public class OntologyTermDialog extends JDialog
 			super( name );
 			this.okStatus = okStatus;
 		}
-		
+
 		/*
 		 * (non-Javadoc)
-		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+		 * 
+		 * @see
+		 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent
+		 * )
 		 */
 		@Override
 		public void actionPerformed( @SuppressWarnings("unused") ActionEvent e )

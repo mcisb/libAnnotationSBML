@@ -15,7 +15,7 @@ import org.junit.*;
 
 /**
  * 
- *
+ * 
  * @author Neil Swainston
  */
 public class OntologyLookupServiceClientTest
@@ -24,45 +24,45 @@ public class OntologyLookupServiceClientTest
 	 * 
 	 */
 	private final static String ONTOLOGY_NAME = "CHEBI"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	private final static String TERM_NAME = "glucose"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	private final static String TERM_ID = "CHEBI:15903"; //$NON-NLS-1$
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@SuppressWarnings("static-method")
-	@Test 
+	@Test
 	public void getOntologyNames() throws Exception
 	{
 		Assert.assertTrue( OntologyLookupServiceClient.getOntologyNames().keySet().contains( ONTOLOGY_NAME ) );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@SuppressWarnings("static-method")
-	@Test 	
+	@Test
 	public void getTermsByName() throws Exception
 	{
 		Assert.assertTrue( OntologyLookupServiceClient.getTermsByName( TERM_NAME, ONTOLOGY_NAME, false ).keySet().contains( TERM_ID ) );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@SuppressWarnings("static-method")
-	@Test 	
+	@Test
 	public void getTermsById() throws Exception
 	{
 		Assert.assertTrue( OntologyLookupServiceClient.getTermById( TERM_ID, ONTOLOGY_NAME ).contains( TERM_NAME ) );

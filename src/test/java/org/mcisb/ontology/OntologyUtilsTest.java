@@ -19,7 +19,7 @@ import org.sbml.jsbml.*;
 
 /**
  * 
- *
+ * 
  * @author Neil Swainston
  */
 public class OntologyUtilsTest
@@ -28,18 +28,18 @@ public class OntologyUtilsTest
 	 * 
 	 */
 	private final OntologyUtils utils = OntologyUtils.getInstance();
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	public OntologyUtilsTest() throws Exception
 	{
 		// No implementation.
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -49,7 +49,7 @@ public class OntologyUtilsTest
 		final OntologyTerm pubChemTerm = utils.getOntologyTerm( "http://www.pubchem.gov/substance/#3752" ); //$NON-NLS-1$
 		final OntologyTerm keggTerm = utils.getOntologyTerm( "http://www.genome.jp/kegg/compound/#C00469" ); //$NON-NLS-1$
 		final OntologyTerm inchiTerm = utils.getOntologyTerm( "http://identifiers.org/inchi/InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3" ); //$NON-NLS-1$
-		
+
 		final Map<OntologyTerm,Object[]> xrefs = new HashMap<>();
 		xrefs.put( chebiTerm, new Object[] { CVTerm.Type.BIOLOGICAL_QUALIFIER, CVTerm.Qualifier.BQB_IS } );
 		OntologyUtils.getInstance().getXrefs( xrefs );
@@ -57,9 +57,9 @@ public class OntologyUtilsTest
 		Assert.assertTrue( xrefs.keySet().contains( keggTerm ) );
 		Assert.assertTrue( xrefs.keySet().contains( inchiTerm ) );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -68,20 +68,21 @@ public class OntologyUtilsTest
 		final OntologyTerm chebiTerm = utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:16236" ); //$NON-NLS-1$
 		// final OntologyTerm pubChemTerm = utils.getOntologyTerm( "http://www.pubchem.gov/substance/#3752" ); //$NON-NLS-1$
 		final OntologyTerm keggTerm = utils.getOntologyTerm( "http://www.genome.jp/kegg/compound/#C00469" ); //$NON-NLS-1$
-		
+
 		/*
-		final Collection<OntologyTerm> keggXrefs = new ArrayList<OntologyTerm>();
-		keggXrefs.add( pubChemTerm );
-		Assert.assertTrue( OntologyUtils.getXrefs( pubChemXrefs, Ontology.CHEBI ).keySet().contains( chebiTerm ) );
-		*/
-		
+		 * final Collection<OntologyTerm> keggXrefs = new
+		 * ArrayList<OntologyTerm>(); keggXrefs.add( pubChemTerm );
+		 * Assert.assertTrue( OntologyUtils.getXrefs( pubChemXrefs,
+		 * Ontology.CHEBI ).keySet().contains( chebiTerm ) );
+		 */
+
 		final Collection<OntologyTerm> keggXrefs = new ArrayList<>();
 		keggXrefs.add( keggTerm );
 		Assert.assertTrue( OntologyUtils.getInstance().getXrefs( keggXrefs, Ontology.CHEBI ).contains( chebiTerm ) );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -103,7 +104,7 @@ public class OntologyUtilsTest
 		Assert.assertTrue( utils.areConjugates( atp4minus, atp ) );
 		Assert.assertTrue( utils.areConjugates( atp3minus, atp4minus ) );
 		Assert.assertTrue( utils.areConjugates( atp4minus, atp3minus ) );
-		
+
 		Assert.assertTrue( utils.areConjugates( ammonia, ammonium ) );
 		Assert.assertTrue( utils.areConjugates( ammonium, ammonia ) );
 		Assert.assertTrue( utils.areConjugates( serinium, serinate ) );
@@ -113,9 +114,9 @@ public class OntologyUtilsTest
 		Assert.assertFalse( utils.areConjugates( water, alphaLglucose ) );
 		Assert.assertFalse( utils.areConjugates( alphaLglucose, water ) );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -135,30 +136,32 @@ public class OntologyUtilsTest
 		final ChebiTerm atp = (ChebiTerm)utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:15422" ); // ATP //$NON-NLS-1$
 		final ChebiTerm atp3minus = (ChebiTerm)utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:57299" ); // ATP 3- //$NON-NLS-1$
 		final ChebiTerm atp4minus = (ChebiTerm)utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:30616" ); // ATP 4- //$NON-NLS-1$
-		
+
 		Assert.assertTrue( utils.getCommonAncestor( atp, atp3minus ) == null );
 		Assert.assertTrue( utils.getCommonAncestor( atp, atp4minus ) == null );
 		Assert.assertTrue( utils.getCommonAncestor( atp3minus, atp ) == null );
 		Assert.assertTrue( utils.getCommonAncestor( atp4minus, atp ) == null );
 		Assert.assertTrue( utils.getCommonAncestor( atp3minus, atp4minus ) == null );
 		Assert.assertTrue( utils.getCommonAncestor( atp4minus, atp3minus ) == null );
-		
+
 		Assert.assertTrue( utils.getCommonAncestor( melibiitol, glycerol ) == null );
 		Assert.assertTrue( utils.getCommonAncestor( glycerol, melibiitol ) == null );
 		Assert.assertTrue( utils.getCommonAncestor( alphaLglucose, betaLglucose ).equals( lGlucopyranose ) );
 		Assert.assertTrue( utils.getCommonAncestor( betaLglucose, alphaLglucose ).equals( lGlucopyranose ) );
 		Assert.assertTrue( utils.getCommonAncestor( alphaLglucose, lGlucopyranose ).equals( lGlucopyranose ) );
 		Assert.assertTrue( utils.getCommonAncestor( betaLglucose, lGlucopyranose ).equals( lGlucopyranose ) );
-		// Assert.assertTrue( utils.getCommonAncestor( alphaLglucose, aldehydoDglucose ).equals( glucose ) );
-		// Assert.assertTrue( utils.getCommonAncestor( aldehydoDglucose, alphaLglucose ).equals( glucose ) );
+		// Assert.assertTrue( utils.getCommonAncestor( alphaLglucose,
+		// aldehydoDglucose ).equals( glucose ) );
+		// Assert.assertTrue( utils.getCommonAncestor( aldehydoDglucose,
+		// alphaLglucose ).equals( glucose ) );
 		Assert.assertTrue( utils.getCommonAncestor( betaDglucose, alphaLglucose ).equals( glucopyranose ) );
 		Assert.assertTrue( utils.getCommonAncestor( alphaLglucose, betaDglucose ).equals( glucopyranose ) );
 		Assert.assertTrue( utils.getCommonAncestor( lipid, cholesterol, false ).equals( lipid ) );
 		Assert.assertTrue( utils.getCommonAncestor( cholesterol, lipid, false ).equals( lipid ) );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -185,7 +188,7 @@ public class OntologyUtilsTest
 		Assert.assertFalse( utils.areEquivalent( atp4minus, atp, MatchCriteria.COMMON_ANCESTOR ) );
 		Assert.assertFalse( utils.areEquivalent( atp3minus, atp4minus, MatchCriteria.COMMON_ANCESTOR ) );
 		Assert.assertFalse( utils.areEquivalent( atp4minus, atp3minus, MatchCriteria.COMMON_ANCESTOR ) );
-		
+
 		final ChebiTerm ammonia = (ChebiTerm)utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:16134" ); // Ammonia //$NON-NLS-1$
 		final ChebiTerm ammonium = (ChebiTerm)utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:28938" ); // Ammonium //$NON-NLS-1$
 		final ChebiTerm serinium = (ChebiTerm)utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:32837" ); // L-serinium //$NON-NLS-1$
@@ -199,15 +202,14 @@ public class OntologyUtilsTest
 		final ChebiTerm betaDglucose = (ChebiTerm)utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:15903" ); // beta-D-glucose //$NON-NLS-1$
 		final OntologyTerm term1 = utils.getOntologyTerm( "http://www.genome.jp/kegg/genes/#sce:YLR262C-A" ); //$NON-NLS-1$
 		final OntologyTerm term2 = utils.getOntologyTerm( "http://www.genome.jp/kegg/genes/#sce:YLR262C" ); //$NON-NLS-1$
-		
-		
+
 		Assert.assertFalse( utils.areEquivalent( ammonia, atp, MatchCriteria.CONJUGATES ) );
 		Assert.assertFalse( utils.areEquivalent( ammonia, atp, MatchCriteria.COMMON_ANCESTOR ) );
 		Assert.assertFalse( utils.areEquivalent( ammonia, atp, MatchCriteria.ANY ) );
 		Assert.assertFalse( utils.areEquivalent( atp, ammonia, MatchCriteria.CONJUGATES ) );
 		Assert.assertFalse( utils.areEquivalent( atp, ammonia, MatchCriteria.COMMON_ANCESTOR ) );
 		Assert.assertFalse( utils.areEquivalent( atp, ammonia, MatchCriteria.ANY ) );
-		
+
 		Assert.assertTrue( utils.areEquivalent( ammonia, ammonium, MatchCriteria.CONJUGATES ) );
 		Assert.assertTrue( utils.areEquivalent( ammonium, ammonia, MatchCriteria.ANY ) );
 		Assert.assertTrue( utils.areEquivalent( serinium, serinate, MatchCriteria.ANY ) );
@@ -228,8 +230,10 @@ public class OntologyUtilsTest
 		Assert.assertTrue( utils.areEquivalent( betaLglucose, alphaLglucose, MatchCriteria.ANY ) );
 		Assert.assertTrue( utils.areEquivalent( alphaLglucose, lGlucopyranose, MatchCriteria.ANY ) );
 		Assert.assertTrue( utils.areEquivalent( betaLglucose, lGlucopyranose, MatchCriteria.ANY ) );
-		// Assert.assertTrue( utils.areEquivalent( alphaLglucose, aldehydoDglucose, MatchCriteria.ANY ) );
-		// Assert.assertTrue( utils.areEquivalent( aldehydoDglucose, alphaLglucose, MatchCriteria.ANY ) );
+		// Assert.assertTrue( utils.areEquivalent( alphaLglucose,
+		// aldehydoDglucose, MatchCriteria.ANY ) );
+		// Assert.assertTrue( utils.areEquivalent( aldehydoDglucose,
+		// alphaLglucose, MatchCriteria.ANY ) );
 		Assert.assertTrue( utils.areEquivalent( betaDglucose, alphaLglucose, MatchCriteria.ANY ) );
 		Assert.assertTrue( utils.areEquivalent( alphaLglucose, betaDglucose, MatchCriteria.ANY ) );
 		Assert.assertFalse( utils.areEquivalent( melibiitol, glycerol, MatchCriteria.COMMON_ANCESTOR ) );
@@ -238,8 +242,10 @@ public class OntologyUtilsTest
 		Assert.assertTrue( utils.areEquivalent( betaLglucose, alphaLglucose, MatchCriteria.COMMON_ANCESTOR ) );
 		Assert.assertTrue( utils.areEquivalent( alphaLglucose, lGlucopyranose, MatchCriteria.COMMON_ANCESTOR ) );
 		Assert.assertTrue( utils.areEquivalent( betaLglucose, lGlucopyranose, MatchCriteria.COMMON_ANCESTOR ) );
-		// Assert.assertTrue( utils.areEquivalent( alphaLglucose, aldehydoDglucose, MatchCriteria.COMMON_ANCESTOR ) );
-		// Assert.assertTrue( utils.areEquivalent( aldehydoDglucose, alphaLglucose, MatchCriteria.COMMON_ANCESTOR ) );
+		// Assert.assertTrue( utils.areEquivalent( alphaLglucose,
+		// aldehydoDglucose, MatchCriteria.COMMON_ANCESTOR ) );
+		// Assert.assertTrue( utils.areEquivalent( aldehydoDglucose,
+		// alphaLglucose, MatchCriteria.COMMON_ANCESTOR ) );
 		Assert.assertTrue( utils.areEquivalent( betaDglucose, alphaLglucose, MatchCriteria.COMMON_ANCESTOR ) );
 		Assert.assertTrue( utils.areEquivalent( alphaLglucose, betaDglucose, MatchCriteria.COMMON_ANCESTOR ) );
 		Assert.assertTrue( utils.areEquivalent( term1, term1, MatchCriteria.CONJUGATES ) );
@@ -251,9 +257,9 @@ public class OntologyUtilsTest
 		Assert.assertFalse( utils.areEquivalent( term1, term2, MatchCriteria.CONJUGATES ) );
 		Assert.assertFalse( utils.areEquivalent( term1, term2, MatchCriteria.ANY ) );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -266,7 +272,7 @@ public class OntologyUtilsTest
 		final ChebiTerm histidineZwitterIon = (ChebiTerm)utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:57595" ); // ATP 4- //$NON-NLS-1$
 		final ChebiTerm valine = (ChebiTerm)utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:16414" ); //$NON-NLS-1$
 		final ChebiTerm valineZwitterIon = (ChebiTerm)utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:57762" ); // ATP 4- //$NON-NLS-1$
-		
+
 		Assert.assertFalse( OntologyUtils.areTautomers( atp, atp3minus ) );
 		Assert.assertFalse( OntologyUtils.areTautomers( atp, atp4minus ) );
 		Assert.assertFalse( OntologyUtils.areTautomers( atp3minus, atp ) );
@@ -275,7 +281,7 @@ public class OntologyUtilsTest
 		Assert.assertFalse( OntologyUtils.areTautomers( atp4minus, histidineZwitterIon ) );
 		Assert.assertTrue( OntologyUtils.areTautomers( histidineZwitterIon, histidine ) );
 		Assert.assertTrue( OntologyUtils.areTautomers( histidine, histidineZwitterIon ) );
-		
+
 		Assert.assertFalse( utils.areEquivalent( atp, atp3minus, MatchCriteria.TAUTOMERS ) );
 		Assert.assertFalse( utils.areEquivalent( atp, atp4minus, MatchCriteria.TAUTOMERS ) );
 		Assert.assertFalse( utils.areEquivalent( atp3minus, atp, MatchCriteria.TAUTOMERS ) );
@@ -284,7 +290,7 @@ public class OntologyUtilsTest
 		Assert.assertFalse( utils.areEquivalent( atp4minus, histidineZwitterIon, MatchCriteria.TAUTOMERS ) );
 		Assert.assertTrue( utils.areEquivalent( histidineZwitterIon, histidine, MatchCriteria.TAUTOMERS ) );
 		Assert.assertTrue( utils.areEquivalent( histidine, histidineZwitterIon, MatchCriteria.TAUTOMERS ) );
-		
+
 		Assert.assertTrue( utils.areEquivalent( atp, atp3minus, MatchCriteria.CONJUGATES ) );
 		Assert.assertTrue( utils.areEquivalent( atp, atp4minus, MatchCriteria.CONJUGATES ) );
 		Assert.assertTrue( utils.areEquivalent( atp3minus, atp, MatchCriteria.CONJUGATES ) );
@@ -293,7 +299,7 @@ public class OntologyUtilsTest
 		Assert.assertFalse( utils.areEquivalent( atp4minus, histidineZwitterIon, MatchCriteria.CONJUGATES ) );
 		Assert.assertFalse( utils.areEquivalent( histidineZwitterIon, histidine, MatchCriteria.CONJUGATES ) );
 		Assert.assertFalse( utils.areEquivalent( histidine, histidineZwitterIon, MatchCriteria.CONJUGATES ) );
-		
+
 		Assert.assertTrue( utils.areEquivalent( atp, atp3minus, MatchCriteria.ANY ) );
 		Assert.assertTrue( utils.areEquivalent( atp, atp4minus, MatchCriteria.ANY ) );
 		Assert.assertTrue( utils.areEquivalent( atp3minus, atp, MatchCriteria.ANY ) );
@@ -302,7 +308,7 @@ public class OntologyUtilsTest
 		Assert.assertFalse( utils.areEquivalent( atp4minus, histidineZwitterIon, MatchCriteria.ANY ) );
 		Assert.assertTrue( utils.areEquivalent( histidineZwitterIon, histidine, MatchCriteria.ANY ) );
 		Assert.assertTrue( utils.areEquivalent( histidine, histidineZwitterIon, MatchCriteria.ANY ) );
-		
+
 		Assert.assertTrue( utils.areEquivalent( atp, atp3minus, Arrays.asList( new MatchCriteria[] { MatchCriteria.CONJUGATES, MatchCriteria.TAUTOMERS } ) ) );
 		Assert.assertTrue( utils.areEquivalent( atp, atp4minus, Arrays.asList( new MatchCriteria[] { MatchCriteria.CONJUGATES, MatchCriteria.TAUTOMERS } ) ) );
 		Assert.assertTrue( utils.areEquivalent( atp3minus, atp, Arrays.asList( new MatchCriteria[] { MatchCriteria.CONJUGATES, MatchCriteria.TAUTOMERS } ) ) );

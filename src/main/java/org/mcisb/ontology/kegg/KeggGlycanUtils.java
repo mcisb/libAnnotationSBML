@@ -24,7 +24,7 @@ public class KeggGlycanUtils extends KeggUtils
 	 * 
 	 */
 	private static KeggGlycanUtils utils = null;
-	
+
 	/**
 	 * 
 	 * @return ChebiUtils
@@ -36,10 +36,10 @@ public class KeggGlycanUtils extends KeggUtils
 		{
 			utils = new KeggGlycanUtils();
 		}
-		
+
 		return utils;
 	}
-	
+
 	/**
 	 * 
 	 * @throws Exception
@@ -48,9 +48,10 @@ public class KeggGlycanUtils extends KeggUtils
 	{
 		super( Ontology.KEGG_GLYCAN );
 	}
-	
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.mcisb.ontology.OntologySource#search(java.lang.String)
 	 */
 	@Override
@@ -60,7 +61,7 @@ public class KeggGlycanUtils extends KeggUtils
 		{
 			return super.search( getGlycansByName( identifier ) );
 		}
-		
+
 		return new HashSet<>();
 	}
 }

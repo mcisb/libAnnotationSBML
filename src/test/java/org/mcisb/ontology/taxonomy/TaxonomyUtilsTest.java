@@ -15,13 +15,13 @@ import org.junit.*;
 import org.mcisb.ontology.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class TaxonomyUtilsTest
 {
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -29,9 +29,9 @@ public class TaxonomyUtilsTest
 	{
 		test( TaxonomyUtils.getInstance().getOntologyTerm( "4932" ) ); //$NON-NLS-1$
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param ontologyTerm
 	 * @throws Exception
 	 */

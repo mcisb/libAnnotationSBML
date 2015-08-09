@@ -34,37 +34,37 @@ public class SbmlUtils
 	 * 
 	 */
 	public static final int DEFAULT_LEVEL = 2;
-	
+
 	/**
 	 * 
 	 */
 	public static final int DEFAULT_VERSION = 4;
-	
+
 	/**
 	 * 
 	 */
 	public final static String FORMULA = "FORMULA"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	public final static String NEUTRAL_FORMULA = "NEUTRAL_FORMULA"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	public final static String NON_SPECIFIC_FORMULA = "NON_SPECIFIC_FORMULA"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	public final static String SMILES = "SMILES"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	public final static String INCHI = "INCHI"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
@@ -74,12 +74,12 @@ public class SbmlUtils
 	 * 
 	 */
 	public final static String CHARGE = "CHARGE"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	public final static String GENE_ASSOCIATION = "GENE_ASSOCIATION"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
@@ -94,52 +94,52 @@ public class SbmlUtils
 	 * 
 	 */
 	public final static String ADDITION = " + "; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	public final static String REVERSIBLE = " <=> "; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	public final static String IRREVERSIBLE = " --> "; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	public final static String COMPARTMENT_START = " ("; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	public final static String COMPARTMENT_END = ")"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	public final static String MODIFIERS_START = " ["; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	public final static String MODIFIERS_END = "]"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	public final static double DEFAULT_INITIAL_CONCENTRATION = 1;
-	
+
 	/**
 	 * 
 	 */
 	private final static String SPACE = " "; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	private final static String NEGATIVE_CHARGE_REGEXP = "(?<=\\()\\d+(?=-\\)$)"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
@@ -149,7 +149,7 @@ public class SbmlUtils
 	 * 
 	 */
 	private final static String defaultSbmlNamespaces = SBMLDocument.URI_NAMESPACE_L2V4;
-	
+
 	/**
 	 * 
 	 */
@@ -162,7 +162,7 @@ public class SbmlUtils
 	{
 		return defaultSbmlNamespaces;
 	}
-	
+
 	/**
 	 * 
 	 * @param creator
@@ -181,7 +181,7 @@ public class SbmlUtils
 
 		final Calendar calendar = Calendar.getInstance();
 		final Date date = calendar.getTime();
-		
+
 		History modelHistory = model.getHistory();
 
 		if( modelHistory == null )
@@ -198,7 +198,7 @@ public class SbmlUtils
 		{
 			modelHistory.setModifiedDate( date );
 		}
-		
+
 		if( creator != null && !modelHistory.isSetListOfCreators() )
 		{
 			modelHistory.addCreator( creator );
@@ -221,9 +221,9 @@ public class SbmlUtils
 	 */
 	public static void addOntologyTerms( final SBase sbase, final Map<OntologyTerm,Object[]> ontologyTerms )
 	{
-		for( Iterator<Map.Entry<OntologyTerm, Object[]>> iterator = new TreeMap<>( ontologyTerms ).entrySet().iterator(); iterator.hasNext(); )
+		for( Iterator<Map.Entry<OntologyTerm,Object[]>> iterator = new TreeMap<>( ontologyTerms ).entrySet().iterator(); iterator.hasNext(); )
 		{
-			final Map.Entry<OntologyTerm, Object[]> entry = iterator.next();
+			final Map.Entry<OntologyTerm,Object[]> entry = iterator.next();
 			addOntologyTerm( sbase, entry.getKey(), (CVTerm.Type)entry.getValue()[ 0 ], (CVTerm.Qualifier)entry.getValue()[ 1 ] );
 		}
 	}
@@ -299,7 +299,7 @@ public class SbmlUtils
 
 		return null;
 	}
-	
+
 	/**
 	 * 
 	 * @param sbase
@@ -310,19 +310,19 @@ public class SbmlUtils
 	public static Collection<OntologyTerm> getOntologyTerms( final SBase sbase, final CVTerm.Type qualifierType, final CVTerm.Qualifier specificQualifierType ) throws Exception
 	{
 		final Map<OntologyTerm,Object[]> ontologyTerms = getOntologyTerms( sbase );
-		
+
 		for( Iterator<Map.Entry<OntologyTerm,Object[]>> iterator = ontologyTerms.entrySet().iterator(); iterator.hasNext(); )
 		{
 			final Map.Entry<OntologyTerm,Object[]> entry = iterator.next();
-			
+
 			if( entry.getValue()[ 0 ] == qualifierType && entry.getValue()[ 1 ] == specificQualifierType )
 			{
 				continue;
 			}
-			
+
 			iterator.remove();
 		}
-		
+
 		return ontologyTerms.keySet();
 	}
 
@@ -403,7 +403,7 @@ public class SbmlUtils
 
 		return true;
 	}
-	
+
 	/**
 	 * 
 	 * @param model
@@ -413,7 +413,7 @@ public class SbmlUtils
 	public static boolean isTransport( final Model model, final Reaction reaction )
 	{
 		final Set<String> compartmentIds = new HashSet<>();
-		
+
 		for( int l = 0; l < reaction.getNumReactants(); l++ )
 		{
 			final SpeciesReference speciesReference = reaction.getReactant( l );
@@ -421,7 +421,7 @@ public class SbmlUtils
 			final Species species = model.getSpecies( speciesId );
 			compartmentIds.add( species.getCompartment() );
 		}
-		
+
 		for( int l = 0; l < reaction.getNumProducts(); l++ )
 		{
 			final SpeciesReference speciesReference = reaction.getProduct( l );
@@ -429,7 +429,7 @@ public class SbmlUtils
 			final Species species = model.getSpecies( speciesId );
 			compartmentIds.add( species.getCompartment() );
 		}
-		
+
 		return compartmentIds.size() > 1;
 	}
 
@@ -468,16 +468,16 @@ public class SbmlUtils
 			}
 
 			buffer.append( getName( model, species ) );
-			
+
 			final String compartmentName = model.getCompartment( species.getCompartment() ).getName();
-			
+
 			if( compartmentName != null && compartmentName.length() > 0 )
 			{
 				buffer.append( COMPARTMENT_START );
 				buffer.append( compartmentName );
 				buffer.append( COMPARTMENT_END );
 			}
-			
+
 			buffer.append( ADDITION );
 			isReactants = true;
 		}
@@ -501,16 +501,16 @@ public class SbmlUtils
 			}
 
 			buffer.append( getName( model, species ) );
-			
+
 			final String compartmentName = model.getCompartment( species.getCompartment() ).getName();
-			
+
 			if( compartmentName != null && compartmentName.length() > 0 )
 			{
 				buffer.append( COMPARTMENT_START );
 				buffer.append( compartmentName );
 				buffer.append( COMPARTMENT_END );
 			}
-			
+
 			buffer.append( ADDITION );
 			isProducts = true;
 		}
@@ -564,10 +564,10 @@ public class SbmlUtils
 				buffer.append( stoichiometry );
 				buffer.append( SPACE );
 			}
-			
+
 			final String formula = getFormula( model, species );
 			final int charge = getCharge( model, species );
-			
+
 			buffer.append( formula );
 			buffer.append( " (" ); //$NON-NLS-1$
 			buffer.append( charge == ChebiUtils.UNDEFINED_CHARGE ? "unknown" : Integer.valueOf( charge ) ); //$NON-NLS-1$
@@ -596,7 +596,7 @@ public class SbmlUtils
 
 			final String formula = getFormula( model, species );
 			final int charge = getCharge( model, species );
-			
+
 			buffer.append( formula );
 			buffer.append( " (" ); //$NON-NLS-1$
 			buffer.append( charge == ChebiUtils.UNDEFINED_CHARGE ? "unknown" : Integer.valueOf( charge ) ); //$NON-NLS-1$
@@ -612,7 +612,7 @@ public class SbmlUtils
 
 		return buffer.toString();
 	}
-	
+
 	/**
 	 * @param model
 	 * @param reactionId
@@ -686,7 +686,7 @@ public class SbmlUtils
 
 		return species.getName();
 	}
-	
+
 	/**
 	 * @param document
 	 * @param reactionId
@@ -697,11 +697,11 @@ public class SbmlUtils
 	{
 		return getSubDocument( document, Arrays.asList( reactionId ), true );
 	}
-	
+
 	/**
 	 * @param document
 	 * @param reactionIds
-	 * @param includeModifiers 
+	 * @param includeModifiers
 	 * @return Model
 	 * @throws Exception
 	 */
@@ -719,16 +719,16 @@ public class SbmlUtils
 			subModelCompartment.setId( compartment.getId() );
 			subModelCompartment.setName( compartment.getName() );
 			subModelCompartment.setSize( compartment.getSize() );
-			
+
 			if( compartment.isSetSBOTerm() )
 			{
 				subModelCompartment.setSBOTerm( compartment.getSBOTerm() );
 			}
-			
+
 			subModelCompartment.setNotes( compartment.getNotesString() );
 			addOntologyTerms( subModelCompartment, getOntologyTerms( compartment ) );
 		}
-		
+
 		for( int l = 0; l < model.getNumUnitDefinitions(); l++ )
 		{
 			final UnitDefinition unitDefinition = model.getUnitDefinition( l );
@@ -749,25 +749,27 @@ public class SbmlUtils
 
 		for( String reactionId : reactionIds )
 		{
-			// reactionId = reactionId.replaceAll( "\\(", "\\_" ).replaceAll( "\\)", "\\_" );
-			
+			// reactionId = reactionId.replaceAll( "\\(", "\\_" ).replaceAll(
+			// "\\)", "\\_" );
+
 			final Reaction reaction = model.getReaction( reactionId );
-			
+
 			if( reaction != null )
 			{
-				// System.out.println( this.toString( model, reactionId, false ) + "\t" + this.getNotes( reaction ).get( SUBSYSTEM ) );
+				// System.out.println( this.toString( model, reactionId, false )
+				// + "\t" + this.getNotes( reaction ).get( SUBSYSTEM ) );
 				final Reaction subModelReaction = subModel.createReaction();
 				subModelReaction.setId( reactionId );
 				subModelReaction.setName( reaction.getName() );
-				
+
 				if( reaction.isSetSBOTerm() )
 				{
 					subModelReaction.setSBOTerm( reaction.getSBOTerm() );
 				}
-				
+
 				subModelReaction.setNotes( reaction.getNotesString() );
 				addOntologyTerms( subModelReaction, getOntologyTerms( reaction ) );
-				
+
 				if( reaction.getKineticLaw() != null )
 				{
 					final KineticLaw kineticLaw = model.getReaction( reactionId ).getKineticLaw();
@@ -775,47 +777,41 @@ public class SbmlUtils
 					subModelKL.setMath( kineticLaw.getMath() );
 					subModelKL.setMetaId( kineticLaw.isSetMetaId() ? kineticLaw.getMetaId() : StringUtils.getUniqueId() );
 					subModelKL.setNotes( kineticLaw.getNotesString() );
-					
-					
+
 					for( LocalParameter klLp : kineticLaw.getListOfLocalParameters() )
 					{
 						final LocalParameter lp = subModelKL.createLocalParameter();
 						lp.setId( klLp.getId() );
 						lp.setValue( klLp.getValue() );
 						lp.setUnits( klLp.getUnits() );
-						
+
 						if( klLp.getNotesString() != null )
 						{
 							lp.setNotes( klLp.getNotesString() );
 						}
 					}
-					
+
 					/*
-					for( int l = 0; l < kineticLaw.getNumParameters(); l++ )
-					{
-						final Parameter klP = kineticLaw.getParameter( l );
-						final Parameter p = subModelKL.createParameter();
-						p.setId( klP.getId() );
-						p.setValue( klP.getValue() );
-						p.setUnits( klP.getUnits() );
-						
-						if( klP.getNotesString() != null )
-						{
-							p.setNotes( klP.getNotesString() );
-						}
-					}
-					*/
+					 * for( int l = 0; l < kineticLaw.getNumParameters(); l++ )
+					 * { final Parameter klP = kineticLaw.getParameter( l );
+					 * final Parameter p = subModelKL.createParameter();
+					 * p.setId( klP.getId() ); p.setValue( klP.getValue() );
+					 * p.setUnits( klP.getUnits() );
+					 * 
+					 * if( klP.getNotesString() != null ) { p.setNotes(
+					 * klP.getNotesString() ); } }
+					 */
 				}
-		
+
 				for( int l = 0; l < reaction.getNumReactants(); l++ )
 				{
 					final Species species = getReactantSpecies( model, reactionId, l );
-					
+
 					if( subModel.getSpecies( species.getId() ) == null )
 					{
 						cloneSpecies( species, subModel.createSpecies() );
 					}
-					
+
 					final SpeciesReference speciesReference = subModelReaction.createReactant();
 					speciesReference.setSpecies( species.getId() );
 					speciesReference.setStoichiometry( reaction.getReactant( l ).getStoichiometry() );
@@ -823,28 +819,28 @@ public class SbmlUtils
 				for( int l = 0; l < reaction.getNumProducts(); l++ )
 				{
 					final Species species = getProductSpecies( model, reactionId, l );
-					
+
 					if( subModel.getSpecies( species.getId() ) == null )
 					{
 						cloneSpecies( species, subModel.createSpecies() );
 					}
-		
+
 					final SpeciesReference speciesReference = subModelReaction.createProduct();
 					speciesReference.setSpecies( species.getId() );
 					speciesReference.setStoichiometry( reaction.getProduct( l ).getStoichiometry() );
 				}
-				
+
 				if( includeModifiers )
 				{
 					for( int l = 0; l < reaction.getNumModifiers(); l++ )
 					{
 						final Species species = getModifierSpecies( model, reactionId, l );
-						
+
 						if( subModel.getSpecies( species.getId() ) == null )
 						{
 							cloneSpecies( species, subModel.createSpecies() );
 						}
-			
+
 						final ModifierSpeciesReference speciesReference = subModelReaction.createModifier();
 						speciesReference.setSpecies( species.getId() );
 					}
@@ -862,7 +858,7 @@ public class SbmlUtils
 	public static void updateAnnotations( final Model model ) throws Exception
 	{
 		updateSBaseAnnotations( model );
-		
+
 		for( int i = 0; i < model.getNumCompartments(); i++ )
 		{
 			updateSBaseAnnotations( model.getCompartment( i ) );
@@ -927,7 +923,7 @@ public class SbmlUtils
 	 */
 	public static void cleanReaction( final Reaction reaction )
 	{
-		final Map<String, Double> idToStoichiometry = new LinkedHashMap<>();
+		final Map<String,Double> idToStoichiometry = new LinkedHashMap<>();
 
 		for( int l = 0; l < reaction.getNumReactants(); l++ )
 		{
@@ -966,7 +962,7 @@ public class SbmlUtils
 			reaction.removeProduct( 0 );
 		}
 
-		for( Map.Entry<String, Double> entry : idToStoichiometry.entrySet() )
+		for( Map.Entry<String,Double> entry : idToStoichiometry.entrySet() )
 		{
 			final double stoichiometry = entry.getValue().doubleValue();
 			SpeciesReference speciesReference = null;
@@ -1012,7 +1008,7 @@ public class SbmlUtils
 	public static String getFormula( final Model model, final Species species ) throws Exception
 	{
 		final String R_GROUP_REG_EXP = "FULLR(\\d*)"; //$NON-NLS-1$
-		
+
 		final SBase sbase = getSpecies( model, species );
 		Object formula = getNotes( sbase ).get( FORMULA );
 
@@ -1020,7 +1016,7 @@ public class SbmlUtils
 		{
 			return formula.toString().replaceAll( R_GROUP_REG_EXP, "R" ); //$NON-NLS-1$
 		}
-		
+
 		formula = getNotes( sbase ).get( NEUTRAL_FORMULA );
 
 		if( formula != null && formula.toString().length() > 0 )
@@ -1039,7 +1035,7 @@ public class SbmlUtils
 				return formula.toString();
 			}
 		}
-		
+
 		final PubChemTerm pubChemTerm = (PubChemTerm)getOntologyTerm( sbase, Ontology.PUBCHEM_COMPOUND );
 
 		if( pubChemTerm != null )
@@ -1081,7 +1077,7 @@ public class SbmlUtils
 
 		return null;
 	}
-	
+
 	/**
 	 * @param species
 	 * @return String
@@ -1096,46 +1092,46 @@ public class SbmlUtils
 		{
 			return smiles.toString();
 		}
-		
+
 		final ChebiTerm chebiTerm = (ChebiTerm)CollectionUtils.getFirst( OntologyUtils.getInstance().getXrefs( getOntologyTerms( sbase ).keySet(), Ontology.CHEBI ) );
-		
+
 		if( chebiTerm != null )
 		{
 			smiles = chebiTerm.getSmiles();
-			
+
 			if( smiles != null )
 			{
 				return smiles.toString();
 			}
 		}
-		
+
 		final PubChemTerm pubChemTerm = (PubChemTerm)CollectionUtils.getFirst( OntologyUtils.getInstance().getXrefs( getOntologyTerms( sbase ).keySet(), Ontology.PUBCHEM_COMPOUND ) );
-		
+
 		if( pubChemTerm != null )
 		{
 			smiles = pubChemTerm.getSmiles();
-			
+
 			if( smiles != null )
 			{
 				return smiles.toString();
 			}
 		}
-		
+
 		return null;
 	}
-	
+
 	/**
 	 * 
 	 * @param species
 	 * @return String
-	 * @throws XMLStreamException 
-	 * @throws UnsupportedEncodingException 
+	 * @throws XMLStreamException
+	 * @throws UnsupportedEncodingException
 	 */
 	public static String getNonSpecificFormula( final Species species ) throws UnsupportedEncodingException, XMLStreamException
 	{
 		return (String)( getNotes( species ).get( NON_SPECIFIC_FORMULA ) );
 	}
-	
+
 	/**
 	 * @param species
 	 * @return String
@@ -1150,19 +1146,19 @@ public class SbmlUtils
 		{
 			return smiles.toString();
 		}
-		
+
 		final ChebiTerm chebiTerm = (ChebiTerm)CollectionUtils.getFirst( OntologyUtils.getInstance().getXrefs( getOntologyTerms( sbase ).keySet(), Ontology.CHEBI ) );
-		
+
 		if( chebiTerm != null )
 		{
 			smiles = chebiTerm.getInchi();
-			
+
 			if( smiles != null )
 			{
 				return smiles.toString();
 			}
 		}
-		
+
 		return null;
 	}
 
@@ -1170,18 +1166,18 @@ public class SbmlUtils
 	 * @param species
 	 * @param formula
 	 * @throws XMLStreamException
-	 * @throws UnsupportedEncodingException 
+	 * @throws UnsupportedEncodingException
 	 */
 	public static void setFormula( final Species species, final String formula ) throws XMLStreamException, UnsupportedEncodingException
 	{
 		set( species, FORMULA, formula );
 	}
-	
+
 	/**
 	 * @param species
 	 * @param charge
 	 * @throws XMLStreamException
-	 * @throws UnsupportedEncodingException 
+	 * @throws UnsupportedEncodingException
 	 */
 	public static void setCharge( final Species species, final int charge ) throws XMLStreamException, UnsupportedEncodingException
 	{
@@ -1196,13 +1192,13 @@ public class SbmlUtils
 			species.setCharge( charge );
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param species
 	 * @param smiles
-	 * @throws XMLStreamException 
-	 * @throws UnsupportedEncodingException 
+	 * @throws XMLStreamException
+	 * @throws UnsupportedEncodingException
 	 */
 	public static void setSmiles( final Species species, final String smiles ) throws UnsupportedEncodingException, XMLStreamException
 	{
@@ -1214,12 +1210,12 @@ public class SbmlUtils
 	 * @param term
 	 * @param value
 	 * @throws XMLStreamException
-	 * @throws UnsupportedEncodingException 
+	 * @throws UnsupportedEncodingException
 	 */
 	public static void set( final SBase sbase, final String term, final Object value ) throws XMLStreamException, UnsupportedEncodingException
 	{
-		final Map<String, Object> notes = getNotes( sbase );
-		
+		final Map<String,Object> notes = getNotes( sbase );
+
 		if( value == null )
 		{
 			notes.remove( term );
@@ -1228,7 +1224,7 @@ public class SbmlUtils
 		{
 			notes.put( term, value );
 		}
-		
+
 		setNotes( sbase, notes );
 	}
 
@@ -1260,21 +1256,21 @@ public class SbmlUtils
 		{
 			return chebiTerm.getCharge();
 		}
-		
+
 		final PubChemTerm pubChemTerm = (PubChemTerm)getOntologyTerm( sbase, Ontology.PUBCHEM_COMPOUND );
 
 		if( pubChemTerm != null && pubChemTerm.getCharge() != NumberUtils.UNDEFINED )
 		{
 			return pubChemTerm.getCharge();
 		}
-		
+
 		final String negativeChargeString = CollectionUtils.getFirst( RegularExpressionUtils.getMatches( species.getName(), NEGATIVE_CHARGE_REGEXP ) );
 
 		if( negativeChargeString != null )
 		{
 			return -Integer.parseInt( negativeChargeString );
 		}
-		
+
 		final String UTF8 = "UTF8"; //$NON-NLS-1$
 		final String positiveChargeString = CollectionUtils.getFirst( RegularExpressionUtils.getMatches( new String( species.getName().getBytes( UTF8 ), UTF8 ), POSITIVE_CHARGE_REGEXP ) );
 
@@ -1282,7 +1278,7 @@ public class SbmlUtils
 		{
 			return Integer.parseInt( positiveChargeString );
 		}
-		
+
 		return NumberUtils.UNDEFINED;
 	}
 
@@ -1290,19 +1286,19 @@ public class SbmlUtils
 	 * @param sbase
 	 * @return Map<String,String>
 	 * @throws XMLStreamException
-	 * @throws UnsupportedEncodingException 
+	 * @throws UnsupportedEncodingException
 	 */
-	public static Map<String, Object> getNotes( final SBase sbase ) throws XMLStreamException, UnsupportedEncodingException
+	public static Map<String,Object> getNotes( final SBase sbase ) throws XMLStreamException, UnsupportedEncodingException
 	{
 		final String PARAGRAPH = "p"; //$NON-NLS-1$
 		final String SEPARATOR = ":"; //$NON-NLS-1$
 
-		final Map<String, Object> notes = new TreeMap<>();
+		final Map<String,Object> notes = new TreeMap<>();
 
 		if( sbase.isSetNotes() )
 		{
 			final String sbaseNotes = sbase.getNotesString();
-			
+
 			for( final String element : XmlUtils.getElements( PARAGRAPH, new ByteArrayInputStream( sbaseNotes.getBytes( Charset.defaultCharset() ) ), true ) )
 			{
 				final int index = element.indexOf( SEPARATOR );
@@ -1324,7 +1320,7 @@ public class SbmlUtils
 	/**
 	 * @param sbase
 	 * @param notes
-	 * @throws XMLStreamException 
+	 * @throws XMLStreamException
 	 */
 	public static void setNotes( final SBase sbase, final Map<String,Object> notes ) throws XMLStreamException
 	{
@@ -1337,30 +1333,30 @@ public class SbmlUtils
 		{
 			final Map<String,Object> orderedNotes = new TreeMap<>();
 			orderedNotes.putAll( notes );
-			
+
 			final StringBuffer buffer = new StringBuffer( "<body xmlns=\"http://www.w3.org/1999/xhtml\">" ); //$NON-NLS-1$
-	
-			for( Map.Entry<String, Object> entry : orderedNotes.entrySet() )
+
+			for( Map.Entry<String,Object> entry : orderedNotes.entrySet() )
 			{
 				buffer.append( PARAGRAPH );
 				buffer.append( entry.getKey() );
 				buffer.append( SEPARATOR );
-				
+
 				final Object value = entry.getValue();
-	
+
 				if( value != null && value.toString().length() > 0 )
 				{
 					buffer.append( XmlUtils.encode( value.toString() ) );
 				}
-	
+
 				buffer.append( PARAGRAPH_END );
 			}
-	
+
 			buffer.append( "</body>" ); //$NON-NLS-1$
 			sbase.setNotes( buffer.toString() );
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param document
@@ -1369,7 +1365,7 @@ public class SbmlUtils
 	public static void checkFormulae( final SBMLDocument document ) throws Exception
 	{
 		final Model model = document.getModel();
-		
+
 		for( int i = 0; i < model.getNumSpecies(); i++ )
 		{
 			final Species species = model.getSpecies( i );
@@ -1378,18 +1374,18 @@ public class SbmlUtils
 			final OntologyTerm ontologyTerm = getOntologyTerm( species, Ontology.CHEBI );
 			String chebiFormula = null;
 			float chebiCharge = NumberUtils.UNDEFINED;
-			
+
 			if( ontologyTerm != null )
 			{
 				final ChebiTerm chebiTerm = (ChebiTerm)ontologyTerm;
 				chebiFormula = chebiTerm.getFormula();
 				chebiCharge = chebiTerm.getCharge();
-			
+
 				if( notesFormula != null || notesCharge != null || chebiFormula != null || chebiCharge != NumberUtils.UNDEFINED )
 				{
 					final boolean formulaeMatch = ( notesFormula != null && notesFormula.equals( chebiFormula ) ) || ( chebiFormula != null && chebiFormula.equals( notesFormula ) );
 					final boolean chargesMatch = notesCharge != null && Float.parseFloat( notesCharge.toString() ) == chebiCharge;
-					
+
 					if( !( formulaeMatch && chargesMatch ) )
 					{
 						System.out.println( species.getId() + "\t" + notesFormula + "\t" + notesCharge + "\t" + chebiFormula + "\t" + chebiCharge + "\t" + formulaeMatch + "\t" + chargesMatch ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
@@ -1398,7 +1394,7 @@ public class SbmlUtils
 			}
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param model
@@ -1427,7 +1423,7 @@ public class SbmlUtils
 		{
 			return add( model, (Reaction)sbase );
 		}
-		
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -1440,7 +1436,7 @@ public class SbmlUtils
 	{
 		return model.addCompartment( compartment.clone() );
 	}
-	
+
 	/**
 	 * @param model
 	 * @param unitDefinition
@@ -1462,10 +1458,10 @@ public class SbmlUtils
 		{
 			species.setInitialConcentration( DEFAULT_INITIAL_CONCENTRATION );
 		}
-		
+
 		return model.addSpecies( species.clone() );
 	}
-	
+
 	/**
 	 * @param model
 	 * @param parameter
@@ -1475,6 +1471,7 @@ public class SbmlUtils
 	{
 		return model.addParameter( parameter.clone() );
 	}
+
 	/**
 	 * @param model
 	 * @param speciesType
@@ -1494,7 +1491,7 @@ public class SbmlUtils
 	{
 		return model.addReaction( reaction.clone() );
 	}
-	
+
 	/**
 	 * 
 	 * @param model
@@ -1503,28 +1500,28 @@ public class SbmlUtils
 	public static Map<String,Integer> getMetaboliteDegree( final Model model, final boolean considerTransport )
 	{
 		final Map<String,Integer> metaboliteDegree = new LinkedHashMap<>();
-		
+
 		for( Reaction reaction : model.getListOfReactions() )
 		{
 			final boolean isTransport = SbmlUtils.isTransport( model, reaction );
-			
+
 			if( considerTransport || !isTransport )
 			{
 				for( SpeciesReference reference : reaction.getListOfReactants() )
 				{
 					addMetaboliteDegree( reference.getSpecies(), metaboliteDegree );
 				}
-				
+
 				for( SpeciesReference reference : reaction.getListOfProducts() )
 				{
 					addMetaboliteDegree( reference.getSpecies(), metaboliteDegree );
 				}
 			}
 		}
-		
+
 		return metaboliteDegree;
 	}
-	
+
 	/**
 	 * 
 	 * @param speciesId
@@ -1533,7 +1530,7 @@ public class SbmlUtils
 	private static void addMetaboliteDegree( final String speciesId, final Map<String,Integer> metaboliteDegree )
 	{
 		Integer count = metaboliteDegree.get( speciesId );
-		
+
 		if( count == null )
 		{
 			metaboliteDegree.put( speciesId, Integer.valueOf( 1 ) );
@@ -1589,16 +1586,16 @@ public class SbmlUtils
 		// sbase.unsetMetaId();
 		// sbase.setMetaId( METAID_PREFIX + sbase.getId() );
 		final History history = sbase.getAnnotation().getHistory();
-		
+
 		final Map<OntologyTerm,Object[]> ontologyTerms = getOntologyTerms( sbase );
 		sbase.unsetAnnotation();
 
 		for( Iterator<Map.Entry<OntologyTerm,Object[]>> iterator = ontologyTerms.entrySet().iterator(); iterator.hasNext(); )
 		{
 			final Map.Entry<OntologyTerm,Object[]> entry = iterator.next();
-			addOntologyTerm( sbase, entry.getKey(),(CVTerm.Type)entry.getValue()[ 0 ], (CVTerm.Qualifier)entry.getValue()[ 1 ] );
+			addOntologyTerm( sbase, entry.getKey(), (CVTerm.Type)entry.getValue()[ 0 ], (CVTerm.Qualifier)entry.getValue()[ 1 ] );
 		}
-		
+
 		sbase.setHistory( history );
 	}
 
@@ -1626,7 +1623,7 @@ public class SbmlUtils
 		for( int l = 0; l < document.getNumErrors(); l++ )
 		{
 			final SBMLError error = document.getError( l );
-			
+
 			if( hasProcessingInstructions && !error.getMessage().equals( "Missing encoding attribute in XML declaration." ) ) //$NON-NLS-1$
 			{
 				errors.append( LINE + error.getLine() + COMMA + error.getColumn() + SEPARATOR + error.getMessage() );
@@ -1647,7 +1644,7 @@ public class SbmlUtils
 	private static Collection<CVTerm> getAnnotationTerms( final SBase sbase )
 	{
 		final Collection<CVTerm> annotationTerms = new LinkedHashSet<>();
-		
+
 		for( int l = 0; l < sbase.getNumCVTerms(); l++ )
 		{
 			annotationTerms.add( sbase.getCVTerm( l ) );
@@ -1661,10 +1658,10 @@ public class SbmlUtils
 	 * @return Map
 	 * @throws Exception
 	 */
-	private static Map<OntologyTerm, Object[]> getOntologyTerms( final Collection<CVTerm> annotationTerms ) throws Exception
+	private static Map<OntologyTerm,Object[]> getOntologyTerms( final Collection<CVTerm> annotationTerms ) throws Exception
 	{
 		final OntologyUtils ontologyUtils = OntologyUtils.getInstance();
-		final Map<OntologyTerm, Object[]> ontologyTerms = new TreeMap<>();
+		final Map<OntologyTerm,Object[]> ontologyTerms = new TreeMap<>();
 
 		for( Iterator<CVTerm> iterator = annotationTerms.iterator(); iterator.hasNext(); )
 		{
@@ -1706,12 +1703,12 @@ public class SbmlUtils
 		clone.setId( original.getId() );
 		clone.setName( original.getName() );
 		clone.setCompartment( original.getCompartment() );
-		
+
 		if( original.isSetSBOTerm() )
 		{
 			clone.setSBOTerm( original.getSBOTerm() );
 		}
-		
+
 		clone.setNotes( original.getNotesString() );
 		clone.setInitialConcentration( original.getInitialConcentration() );
 		clone.setUnits( original.getUnits() );

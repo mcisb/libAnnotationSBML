@@ -15,18 +15,18 @@ import java.util.*;
 import org.mcisb.ontology.miriam.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class OntologyFactory
-{	
+{
 	/**
 	 * 
 	 */
 	private static Map<String,Ontology> ontologies = null;
-	
+
 	/**
-	 *
+	 * 
 	 * @return Collection
 	 * @throws Exception
 	 */
@@ -34,9 +34,9 @@ public class OntologyFactory
 	{
 		return OntologyFactory.getOntologiesMap().values();
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param name
 	 * @return Ontology
 	 * @throws Exception
@@ -44,7 +44,7 @@ public class OntologyFactory
 	public static synchronized Ontology getOntology( final String name ) throws Exception
 	{
 		Ontology ontology = OntologyFactory.getOntologiesMap().get( name );
-		
+
 		if( ontology == null && name != null )
 		{
 			// Consider synonyms:
@@ -61,12 +61,12 @@ public class OntologyFactory
 				return OntologyFactory.getOntologiesMap().get( Ontology.UNIPROT );
 			}
 		}
-		
+
 		return ontology;
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param uri
 	 * @return Ontology
 	 * @throws Exception
@@ -75,28 +75,28 @@ public class OntologyFactory
 	{
 		final String SEPARATOR = uri.contains( Ontology.URL_SEPARATOR ) ? Ontology.URL_SEPARATOR : Ontology.URI_SEPARATOR;
 		int index = -1;
-			
+
 		while( ( index = uri.lastIndexOf( SEPARATOR ) ) != -1 )
 		{
 			final String uriIdentifier = uri.substring( 0, index );
-			
+
 			for( Iterator<Ontology> iterator = getOntologies().iterator(); iterator.hasNext(); )
-    		{
-    			final Ontology ontology = iterator.next();
-    			
-    			if( ontology.getUriIdentifiers().contains( uriIdentifier ) )
-    			{
-    				return ontology;
-    			}
-    		}
+			{
+				final Ontology ontology = iterator.next();
+
+				if( ontology.getUriIdentifiers().contains( uriIdentifier ) )
+				{
+					return ontology;
+				}
+			}
 		}
-		
+
 		return null;
 	}
-	
+
 	/**
 	 * 
-	 *
+	 * 
 	 * @return OntologyFactory
 	 * @throws Exception
 	 */
@@ -107,7 +107,7 @@ public class OntologyFactory
 			ontologies = new HashMap<>();
 			ontologies.putAll( MiriamUtils.getOntologies() );
 		}
-		
+
 		return ontologies;
 	}
 }

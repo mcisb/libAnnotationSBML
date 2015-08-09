@@ -30,22 +30,22 @@ public class OntologySearchAction extends AbstractAction
 	 * 
 	 */
 	public final static String OPTIONS = "OPTIONS"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 
 	 */
 	private final PropertyChangeSupport support = new PropertyChangeSupport( this );
-	
+
 	/**
 	 * 
 	 */
 	final OntologyLookupServiceClient client;
-	
+
 	/**
 	 * 
 	 */
@@ -55,7 +55,7 @@ public class OntologySearchAction extends AbstractAction
 	 * 
 	 */
 	String searchTerm;
-	
+
 	/**
 	 * 
 	 * @param client
@@ -65,7 +65,7 @@ public class OntologySearchAction extends AbstractAction
 		super( ResourceBundle.getBundle( "org.mcisb.ui.ontology.messages" ).getString( "OntologySearchAction.searchActionLabel" ) ); //$NON-NLS-1$ //$NON-NLS-2$
 		this.client = client;
 	}
-	
+
 	/**
 	 * 
 	 * @param ontologyName
@@ -74,7 +74,7 @@ public class OntologySearchAction extends AbstractAction
 	{
 		this.ontologyName = ontologyName;
 	}
-	
+
 	/**
 	 * 
 	 * @param searchTerm
@@ -83,37 +83,43 @@ public class OntologySearchAction extends AbstractAction
 	{
 		this.searchTerm = searchTerm;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed( final ActionEvent e )
 	{
 		Container owner = null;
-		
+
 		if( e.getSource() instanceof JComponent )
 		{
 			owner = ( (JComponent)e.getSource() ).getTopLevelAncestor();
 		}
-		
+
 		performSearch( owner );
 	}
-	
+
 	/*
 	 * (non-Javadoc)
-	 * @see javax.swing.AbstractAction#addPropertyChangeListener(java.beans.PropertyChangeListener)
+	 * 
+	 * @see javax.swing.AbstractAction#addPropertyChangeListener(java.beans.
+	 * PropertyChangeListener)
 	 */
 	@Override
 	public synchronized void addPropertyChangeListener( PropertyChangeListener l )
 	{
 		support.addPropertyChangeListener( l );
 	}
-	
+
 	/*
 	 * (non-Javadoc)
-	 * @see javax.swing.AbstractAction#removePropertyChangeListener(java.beans.PropertyChangeListener)
+	 * 
+	 * @see javax.swing.AbstractAction#removePropertyChangeListener(java.beans.
+	 * PropertyChangeListener)
 	 */
 	@Override
 	public synchronized void removePropertyChangeListener( PropertyChangeListener l )
@@ -129,7 +135,7 @@ public class OntologySearchAction extends AbstractAction
 	{
 		support.firePropertyChange( OPTIONS, null, options );
 	}
-	
+
 	/**
 	 * 
 	 * @param owner
@@ -140,6 +146,7 @@ public class OntologySearchAction extends AbstractAction
 		{
 			/*
 			 * (non-Javadoc)
+			 * 
 			 * @see java.lang.Runnable#run()
 			 */
 			@Override
@@ -156,30 +163,32 @@ public class OntologySearchAction extends AbstractAction
 							{
 								owner.setCursor( Cursor.getPredefinedCursor( Cursor.WAIT_CURSOR ) );
 							}
-						} );		
+						} );
 					}
-					
+
 					setOptions( new ArrayList<OntologyTerm>() );
-	
+
 					Collection<OntologyTerm> options = new ArrayList<>();
-					
+
 					if( searchTerm.length() > 0 )
 					{
 						Map<String,String> terms = OntologyLookupServiceClient.getTermsByName( searchTerm.trim(), ontologyName, false );
-						
+
 						for( Iterator<Map.Entry<String,String>> iterator = terms.entrySet().iterator(); iterator.hasNext(); )
 						{
 							final Map.Entry<String,String> entry = iterator.next();
 							final String key = entry.getKey();
 							final String value = entry.getValue();
-							
+
 							if( key.indexOf( Ontology.ID_SEPARATOR ) != -1 )
 							{
 								final StringTokenizer tokenizer = new StringTokenizer( key, Ontology.ID_SEPARATOR );
-								
-								//TODO: OntologyTerms can only currently be generated from MIRIAM-supported Ontologies. This needs fixing...
+
+								// TODO: OntologyTerms can only currently be
+								// generated from MIRIAM-supported Ontologies.
+								// This needs fixing...
 								final OntologyTerm ontologyTerm = OntologyUtils.getInstance().getOntologyTerm( tokenizer.nextToken(), tokenizer.nextToken() );
-								
+
 								if( ontologyTerm != null )
 								{
 									ontologyTerm.setName( value );
@@ -188,7 +197,7 @@ public class OntologySearchAction extends AbstractAction
 							}
 						}
 					}
-					
+
 					setOptions( options );
 				}
 				catch( Exception ex )
@@ -222,7 +231,7 @@ public class OntologySearchAction extends AbstractAction
 				}
 			}
 		};
-		
+
 		new Thread( runnable ).start();
 	}
 }

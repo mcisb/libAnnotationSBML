@@ -23,7 +23,7 @@ public class GeneUtils extends OntologySource
 	 * 
 	 */
 	private static GeneUtils utils = null;
-	
+
 	/**
 	 * 
 	 * @return ChebiUtils
@@ -35,10 +35,10 @@ public class GeneUtils extends OntologySource
 		{
 			utils = new GeneUtils();
 		}
-		
+
 		return utils;
 	}
-	
+
 	/**
 	 * 
 	 * @throws Exception
@@ -47,10 +47,12 @@ public class GeneUtils extends OntologySource
 	{
 		super( Ontology.NCBI_GENE );
 	}
-	
+
 	/*
 	 * (non-Javadoc)
-	 * @see org.mcisb.ontology.OntologySource#getOntologyTermFromId(java.lang.String)
+	 * 
+	 * @see
+	 * org.mcisb.ontology.OntologySource#getOntologyTermFromId(java.lang.String)
 	 */
 	@Override
 	protected OntologyTerm getOntologyTermFromId( final String id ) throws Exception

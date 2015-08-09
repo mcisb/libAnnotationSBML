@@ -28,7 +28,7 @@ public class OntologyChooserWizard extends Wizard
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 
 	 * @param bean
@@ -39,7 +39,7 @@ public class OntologyChooserWizard extends Wizard
 	public OntologyChooserWizard( final GenericBean bean ) throws ServiceException, RemoteException, MalformedURLException
 	{
 		super( bean, null );
-		
+
 		final ResourceBundle resourceBundle = ResourceBundle.getBundle( "org.mcisb.ui.ontology.messages" ); //$NON-NLS-1$
 		addWizardComponent( new ChooserWizardComponent( bean, new OntologyChooserPanel( resourceBundle.getString( "OntologyChooserWizard.title" ) ) ) ); //$NON-NLS-1$
 		init();

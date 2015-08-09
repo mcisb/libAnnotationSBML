@@ -15,7 +15,7 @@ import java.beans.*;
 import java.util.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class OntologyTermSearcher implements PropertyChangeListener
@@ -24,27 +24,27 @@ public class OntologyTermSearcher implements PropertyChangeListener
 	 * 
 	 */
 	public static final String SEARCHING = "SEARCHING"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	public static final String ONTOLOGY_TERMS = "ONTOLOGY_TERMS"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	public static final String TEXT = "TEXT"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	OntologySource ontologySource = null;
-	
+
 	/**
 	 * 
 	 */
 	String searchTerm = null;
-	
+
 	/**
 	 * 
 	 */
@@ -54,12 +54,12 @@ public class OntologyTermSearcher implements PropertyChangeListener
 	 * 
 	 */
 	private Collection<OntologyTerm> ontologyTerms = null;
-	
+
 	/**
 	 * 
 	 */
 	private boolean searching = false;
-	
+
 	/**
 	 * @param ontologySource
 	 */
@@ -68,7 +68,7 @@ public class OntologyTermSearcher implements PropertyChangeListener
 		this.ontologySource = ontologySource;
 		update();
 	}
-	
+
 	/**
 	 * 
 	 * @param searchTerm
@@ -78,7 +78,7 @@ public class OntologyTermSearcher implements PropertyChangeListener
 		this.searchTerm = searchTerm;
 		update();
 	}
-	
+
 	/**
 	 * 
 	 * @param listener
@@ -87,7 +87,7 @@ public class OntologyTermSearcher implements PropertyChangeListener
 	{
 		support.addPropertyChangeListener( listener );
 	}
-	
+
 	/**
 	 * 
 	 * @param listener
@@ -97,9 +97,11 @@ public class OntologyTermSearcher implements PropertyChangeListener
 		support.removePropertyChangeListener( listener );
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
-	 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
+	 * 
+	 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.
+	 * PropertyChangeEvent)
 	 */
 	@Override
 	public void propertyChange( PropertyChangeEvent evt )
@@ -113,7 +115,7 @@ public class OntologyTermSearcher implements PropertyChangeListener
 			setSearchTerm( (String)evt.getNewValue() );
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param searchTerm
@@ -121,15 +123,16 @@ public class OntologyTermSearcher implements PropertyChangeListener
 	private void update()
 	{
 		final int MIN_SEARCH_LENGTH = 2;
-		
+
 		setOntologyTerms( new ArrayList<OntologyTerm>() );
-		
+
 		if( ontologySource != null && searchTerm != null && searchTerm.length() > MIN_SEARCH_LENGTH )
 		{
 			new Thread( new Runnable()
 			{
 				/*
 				 * (non-Javadoc)
+				 * 
 				 * @see java.lang.Runnable#run()
 				 */
 				@Override
@@ -137,25 +140,25 @@ public class OntologyTermSearcher implements PropertyChangeListener
 				{
 					setSearching( true );
 					setOntologyTerms( new ArrayList<OntologyTerm>() );
-					
-        			try
-        			{
-        				setOntologyTerms( ontologySource.search( searchTerm.trim() + ontologySource.getSearchWildcard() ) );
-        			}
-        			catch( Exception ex )
-        			{
-        				setOntologyTerms( new ArrayList<OntologyTerm>() );
-        				ex.printStackTrace();
-        			}
-        			finally
-        			{
-        				setSearching( false );
-        			}
+
+					try
+					{
+						setOntologyTerms( ontologySource.search( searchTerm.trim() + ontologySource.getSearchWildcard() ) );
+					}
+					catch( Exception ex )
+					{
+						setOntologyTerms( new ArrayList<OntologyTerm>() );
+						ex.printStackTrace();
+					}
+					finally
+					{
+						setSearching( false );
+					}
 				}
 			} ).start();
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param searching
@@ -166,7 +169,7 @@ public class OntologyTermSearcher implements PropertyChangeListener
 		this.searching = searching;
 		support.firePropertyChange( SEARCHING, oldSearching, searching );
 	}
-	
+
 	/**
 	 * 
 	 * @param ontologyTerms

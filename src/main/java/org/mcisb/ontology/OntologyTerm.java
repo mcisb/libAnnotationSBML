@@ -31,7 +31,7 @@ public class OntologyTerm implements Comparable<Object>, Serializable
 	 * 
 	 */
 	public static final String COLON = ":"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
@@ -41,12 +41,12 @@ public class OntologyTerm implements Comparable<Object>, Serializable
 	 * 
 	 */
 	protected final String id;
-	
+
 	/**
 	 * 
 	 */
 	protected final Ontology ontology;
-	
+
 	/**
 	 * 
 	 */
@@ -56,22 +56,22 @@ public class OntologyTerm implements Comparable<Object>, Serializable
 	 * 
 	 */
 	protected final Map<OntologyTerm,Object[]> xrefs = new HashMap<>();
-	
+
 	/**
 	 * 
 	 */
 	protected String name;
-	
+
 	/**
 	 * 
 	 */
 	protected boolean initialised = false;
-	
+
 	/**
 	 * 
 	 */
 	protected boolean valid = true;
-	
+
 	/**
 	 * 
 	 * @param ontology
@@ -82,7 +82,7 @@ public class OntologyTerm implements Comparable<Object>, Serializable
 		this.ontology = ontology;
 		this.id = id.replace( ENCODED_COLON, COLON );
 	}
-	
+
 	/**
 	 * 
 	 * @return boolean
@@ -91,27 +91,27 @@ public class OntologyTerm implements Comparable<Object>, Serializable
 	{
 		return valid;
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @return String
 	 */
 	public String getId()
 	{
 		return id;
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param name
 	 */
 	public void setName( final String name )
 	{
 		this.name = name;
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @return String
 	 * @throws Exception
 	 */
@@ -121,30 +121,30 @@ public class OntologyTerm implements Comparable<Object>, Serializable
 		{
 			init();
 		}
-		
+
 		return name;
 	}
 
 	/**
-	 *
+	 * 
 	 * @return Ontology
 	 */
 	public Ontology getOntology()
 	{
 		return ontology;
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @return String
 	 */
 	public String getOntologyName()
 	{
 		return ontology.getName();
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param synonym
 	 * @return boolean
 	 */
@@ -154,12 +154,12 @@ public class OntologyTerm implements Comparable<Object>, Serializable
 		{
 			return synonyms.add( synonym );
 		}
-		
+
 		return false;
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @return Collection
 	 * @throws Exception
 	 */
@@ -168,9 +168,9 @@ public class OntologyTerm implements Comparable<Object>, Serializable
 		init();
 		return synonyms;
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @return String
 	 */
 	public String toUri()
@@ -178,9 +178,9 @@ public class OntologyTerm implements Comparable<Object>, Serializable
 		final String uriIdentifier = getOntology().getUrlIdentifier();
 		return uriIdentifier + id;
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @return String
 	 */
 	public String getLink()
@@ -188,9 +188,9 @@ public class OntologyTerm implements Comparable<Object>, Serializable
 		final String linkTemplate = getOntology().getLinkTemplate();
 		return ( linkTemplate == null ) ? null : linkTemplate.replace( Ontology.WILDCARD, id );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @return Collection
 	 * @throws Exception
 	 */
@@ -199,7 +199,7 @@ public class OntologyTerm implements Comparable<Object>, Serializable
 		init();
 		return xrefs;
 	}
-	
+
 	/**
 	 * 
 	 * @param xref
@@ -212,12 +212,13 @@ public class OntologyTerm implements Comparable<Object>, Serializable
 		{
 			return;
 		}
-		
+
 		xrefs.put( xref, new Object[] { type, qualifier } );
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -230,9 +231,10 @@ public class OntologyTerm implements Comparable<Object>, Serializable
 		// else
 		return false;
 	}
-	
-	/* 
+
+	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -243,6 +245,7 @@ public class OntologyTerm implements Comparable<Object>, Serializable
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Comparable#compareTo(T)
 	 */
 	@Override
@@ -252,20 +255,21 @@ public class OntologyTerm implements Comparable<Object>, Serializable
 		{
 			final Ontology objectOntology = ( (OntologyTerm)object ).ontology;
 			final int ontologyCompare = ontology.compareTo( objectOntology );
-			
+
 			if( ontologyCompare == 0 )
 			{
 				return id.compareTo( ( (OntologyTerm)object ).id );
 			}
-			
+
 			return ontologyCompare;
 		}
-		
+
 		return -1;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -281,9 +285,9 @@ public class OntologyTerm implements Comparable<Object>, Serializable
 			return id;
 		}
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	protected synchronized void init() throws Exception
@@ -294,10 +298,10 @@ public class OntologyTerm implements Comparable<Object>, Serializable
 			initialised = true;
 		}
 	}
-	
+
 	/**
 	 * 
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@SuppressWarnings("unused")

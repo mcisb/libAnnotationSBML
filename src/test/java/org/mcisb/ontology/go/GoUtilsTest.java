@@ -16,7 +16,7 @@ import org.junit.*;
 import org.mcisb.ontology.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class GoUtilsTest
@@ -30,9 +30,9 @@ public class GoUtilsTest
 	 * 
 	 */
 	private final GoTerm mitochondriaGoTerm = new GoTerm( GoUtils.MITOCHONDRIA_GO_TERM_ID );
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	public GoUtilsTest() throws Exception
@@ -41,7 +41,7 @@ public class GoUtilsTest
 	}
 
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -59,7 +59,7 @@ public class GoUtilsTest
 		ontologyTermsSet.add( ontologyTerm );
 		ontologyTermsList.add( ontologyTerm );
 		test1( ontologyTerm );
-		
+
 		ontologyTerm = (GoTerm)utils.getOntologyTerm( "GO%3A0005737" ); //$NON-NLS-1$
 		ontologyTermsSet.add( ontologyTerm );
 		ontologyTermsList.add( ontologyTerm );
@@ -68,9 +68,9 @@ public class GoUtilsTest
 		Assert.assertTrue( ontologyTermsSet.size() == 1 );
 		Assert.assertTrue( ontologyTermsList.size() == 3 );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -78,9 +78,9 @@ public class GoUtilsTest
 	{
 		Assert.assertTrue( mitochondriaGoTerm.getName().equals( "mitochondrion" ) ); //$NON-NLS-1$
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param ontologyTerm
 	 * @throws Exception
 	 */
@@ -90,9 +90,9 @@ public class GoUtilsTest
 		final String NAME = "cytoplasm"; //$NON-NLS-1$
 		Assert.assertTrue( ontologyTerm.getName().equals( NAME ) );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test

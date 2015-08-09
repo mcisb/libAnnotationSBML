@@ -31,18 +31,17 @@ public class KeggGenomeTerm extends KeggTerm
 	 * 
 	 */
 	private static final String ID_PREFIX = "gn" + OntologyTerm.ENCODED_COLON; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	private static final String TAXONOMY = "TAXONOMY"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	private static final String DEFINITION = "DEFINITION"; //$NON-NLS-1$
 
-	
 	/**
 	 * @param id
 	 * @throws Exception
@@ -51,16 +50,18 @@ public class KeggGenomeTerm extends KeggTerm
 	{
 		super( Ontology.KEGG_GENOME, id, ID_PREFIX );
 	}
-	
+
 	/*
 	 * (non-Javadoc)
-	 * @see org.mcisb.ontology.kegg.KeggTerm#parseProperty(java.lang.String, java.util.List)
+	 * 
+	 * @see org.mcisb.ontology.kegg.KeggTerm#parseProperty(java.lang.String,
+	 * java.util.List)
 	 */
 	@Override
 	protected void parseProperty( final String propertyName, final List<String> values ) throws Exception
 	{
 		super.parseProperty( propertyName, values );
-		
+
 		if( propertyName.equals( TAXONOMY ) )
 		{
 			final String SEPARATOR = ":"; //$NON-NLS-1$
@@ -68,7 +69,7 @@ public class KeggGenomeTerm extends KeggTerm
 			taxonomyId = taxonomyId.substring( taxonomyId.indexOf( SEPARATOR ) + SEPARATOR.length() );
 			addXref( OntologyUtils.getInstance().getOntologyTerm( Ontology.TAXONOMY, taxonomyId ), CVTerm.Type.BIOLOGICAL_QUALIFIER, CVTerm.Qualifier.BQB_IS );
 		}
-		else if( propertyName.equals( DEFINITION ) )	
+		else if( propertyName.equals( DEFINITION ) )
 		{
 			setName( CollectionUtils.getFirst( values ) );
 		}

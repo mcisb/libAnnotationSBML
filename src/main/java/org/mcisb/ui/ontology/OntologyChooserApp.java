@@ -28,7 +28,7 @@ public class OntologyChooserApp extends App
 	 * 
 	 */
 	private final ResourceBundle resourceBundle = ResourceBundle.getBundle( "org.mcisb.ui.ontology.messages" ); //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 * @param dialog
@@ -39,9 +39,10 @@ public class OntologyChooserApp extends App
 		super( dialog, bean );
 		init( resourceBundle.getString( "OntologyChooserApp.title" ), resourceBundle.getString( "OntologyChooserApp.error" ), new ResourceFactory().getImageIcon( resourceBundle.getString( "OntologyChooserApp.icon" ) ).getImage() ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
-	
-	/* 
+
+	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.mcisb.ui.app.App#getWizard(org.mcisb.util.GenericBean)
 	 */
 	@Override

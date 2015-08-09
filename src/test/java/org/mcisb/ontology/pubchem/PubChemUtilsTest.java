@@ -15,7 +15,7 @@ import org.junit.*;
 import org.mcisb.ontology.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class PubChemUtilsTest
@@ -24,22 +24,22 @@ public class PubChemUtilsTest
 	 * 
 	 */
 	private final PubChemUtils compoundUtils = new PubChemUtils( Ontology.PUBCHEM_COMPOUND );
-	
+
 	/**
 	 * 
 	 */
 	private final PubChemUtils substanceUtils = new PubChemUtils( Ontology.PUBCHEM_SUBSTANCE );
-	
+
 	/**
 	 * 
 	 */
 	final PubChemTerm compoundATP = (PubChemTerm)compoundUtils.getOntologyTermFromId( "5957" ); //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	final PubChemTerm substanceATP = (PubChemTerm)substanceUtils.getOntologyTermFromId( "53788912" ); //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 * @throws Exception
@@ -48,18 +48,18 @@ public class PubChemUtilsTest
 	{
 		// No implementation.
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
 	public void getOntologyTerm() throws Exception
 	{
-		testCompoundATP( compoundATP ); 
-		testSubstanceATP( substanceATP ); 
+		testCompoundATP( compoundATP );
+		testSubstanceATP( substanceATP );
 	}
-	
+
 	/**
 	 * 
 	 * @throws Exception
@@ -69,9 +69,9 @@ public class PubChemUtilsTest
 	{
 		Assert.assertTrue( ( (PubChemTerm)compoundUtils.getOntologyTermFromId( "46878370" ) ).getFormula().equals( "C20H21N7O7" ) ); //$NON-NLS-1$ //$NON-NLS-2$
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -80,14 +80,14 @@ public class PubChemUtilsTest
 		final String ATP = "ATP"; //$NON-NLS-1$
 		Assert.assertTrue( compoundUtils.search( ATP ).contains( compoundATP ) );
 		Assert.assertTrue( substanceUtils.search( ATP ).contains( substanceATP ) );
-		
+
 		Assert.assertTrue( compoundUtils.search( "S-acetyldihydrolipoamide" ).size() == 1 ); //$NON-NLS-1$
 		Assert.assertTrue( compoundUtils.search( "fructose-1,6-bisphosphate" ).size() > 0 ); //$NON-NLS-1$
 		Assert.assertTrue( compoundUtils.search( "pyrimidine" ).size() > 1 ); //$NON-NLS-1$
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param ontologyTerm
 	 * @throws Exception
 	 */
@@ -105,9 +105,9 @@ public class PubChemUtilsTest
 		Assert.assertTrue( ontologyTerm.getSmiles().equals( "C1=NC2=C(C(=N1)N)N=CN2C3C(C(C(O3)COP(=O)(O)OP(=O)(O)OP(=O)(O)O)O)O" ) ); //$NON-NLS-1$
 		Assert.assertTrue( ontologyTerm.getName().equals( "Adenosine triphosphate" ) ); //$NON-NLS-1$
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param ontologyTerm
 	 * @throws Exception
 	 */

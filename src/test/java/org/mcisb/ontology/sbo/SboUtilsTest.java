@@ -17,7 +17,7 @@ import org.mcisb.ontology.*;
 import org.sbml.jsbml.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class SboUtilsTest
@@ -26,18 +26,18 @@ public class SboUtilsTest
 	 * 
 	 */
 	private final SboUtils utils = SboUtils.getInstance();
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	public SboUtilsTest() throws Exception
 	{
 		// No implementation.
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -45,28 +45,28 @@ public class SboUtilsTest
 	{
 		final Set<OntologyTerm> ontologyTermsSet = new HashSet<>();
 		final List<OntologyTerm> ontologyTermsList = new ArrayList<>();
-		
+
 		SboTerm ontologyTerm = (SboTerm)utils.getOntologyTerm( "Henri-Michaelis-Menten rate law" ); //$NON-NLS-1$
 		ontologyTermsSet.add( ontologyTerm );
 		ontologyTermsList.add( ontologyTerm );
 		test( ontologyTerm );
-		
+
 		ontologyTerm = (SboTerm)utils.getOntologyTerm( "SBO:0000029" ); //$NON-NLS-1$
 		ontologyTermsSet.add( ontologyTerm );
 		ontologyTermsList.add( ontologyTerm );
 		test( ontologyTerm );
-		
+
 		ontologyTerm = (SboTerm)utils.getOntologyTerm( 29 );
 		ontologyTermsSet.add( ontologyTerm );
 		ontologyTermsList.add( ontologyTerm );
 		test( ontologyTerm );
-		
+
 		Assert.assertTrue( ontologyTermsSet.size() == 1 );
 		Assert.assertTrue( ontologyTermsList.size() == 3 );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param ontologyTerm
 	 * @throws Exception
 	 */
@@ -76,7 +76,7 @@ public class SboUtilsTest
 		Assert.assertTrue( ontologyTerm.getFormula().equals( "lambda(kcat, Et, S, Ks, kcat*Et*S/(Ks+S))" ) ); //$NON-NLS-1$
 		Assert.assertTrue( ontologyTerm.getIntId() == 29 );
 		Assert.assertTrue( utils.getShortName( ontologyTerm.getRawMath(), 373 ).equals( "Ks" ) ); //$NON-NLS-1$
-		
+
 		final KineticLaw kineticLaw = new KineticLaw();
 		kineticLaw.setMath( JSBML.readMathMLFromString( ontologyTerm.getMath() ) );
 		Assert.assertTrue( JSBML.formulaToString( kineticLaw.getMath() ).equals( "lambda(kcat, Et, S, Ks, kcat*Et*S/(Ks+S))" ) ); //$NON-NLS-1$

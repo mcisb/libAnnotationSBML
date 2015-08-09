@@ -20,7 +20,7 @@ import org.mcisb.ui.util.*;
 import org.mcisb.util.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class OntologySourcePanel extends GridBagPanel implements ListSelectionListener, Disposable
@@ -29,27 +29,27 @@ public class OntologySourcePanel extends GridBagPanel implements ListSelectionLi
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 
 	 */
 	final static ResourceBundle resourceBundle = ResourceBundle.getBundle( "org.mcisb.ui.ontology.messages" ); //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	private final transient Map<Object,OntologySource> nameToOntologySource;
-	
+
 	/**
 	 * 
 	 */
 	private transient OntologySource ontologySource;
-	
+
 	/**
 	 * 
 	 */
 	private JList<?> list;
-	
+
 	/**
 	 * 
 	 * @param nameToOntologySource
@@ -57,14 +57,14 @@ public class OntologySourcePanel extends GridBagPanel implements ListSelectionLi
 	public OntologySourcePanel( final Map<Object,OntologySource> nameToOntologySource )
 	{
 		this.nameToOntologySource = nameToOntologySource;
-		
+
 		list = new JList<>( nameToOntologySource.keySet().toArray() );
 		list.setSelectionMode( ListSelectionModel.SINGLE_SELECTION );
 		list.addListSelectionListener( this );
 		add( new JLabel( resourceBundle.getString( "OntologySourcePanel.ontologyPrompt" ) ), 0, 0, false, false, true, true, GridBagConstraints.NONE, 1 ); //$NON-NLS-1$
 		add( new JScrollPane( list ), 1, 0, true, true, true, true, GridBagConstraints.HORIZONTAL, 1 );
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -76,7 +76,10 @@ public class OntologySourcePanel extends GridBagPanel implements ListSelectionLi
 
 	/*
 	 * (non-Javadoc)
-	 * @see javax.swing.event.ListSelectionListener#valueChanged(javax.swing.event.ListSelectionEvent)
+	 * 
+	 * @see
+	 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.event
+	 * .ListSelectionEvent)
 	 */
 	@Override
 	public void valueChanged( ListSelectionEvent e )
@@ -87,9 +90,10 @@ public class OntologySourcePanel extends GridBagPanel implements ListSelectionLi
 			setOntologySource( nameToOntologySource.get( selection ) );
 		}
 	}
-	
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.mcisb.util.Disposable#dispose()
 	 */
 	@Override

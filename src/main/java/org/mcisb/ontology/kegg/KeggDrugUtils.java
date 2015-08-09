@@ -24,7 +24,7 @@ public class KeggDrugUtils extends KeggUtils
 	 * 
 	 */
 	private static KeggDrugUtils utils = null;
-	
+
 	/**
 	 * 
 	 * @return ChebiUtils
@@ -36,10 +36,10 @@ public class KeggDrugUtils extends KeggUtils
 		{
 			utils = new KeggDrugUtils();
 		}
-		
+
 		return utils;
 	}
-	
+
 	/**
 	 * 
 	 * @throws Exception
@@ -48,9 +48,10 @@ public class KeggDrugUtils extends KeggUtils
 	{
 		super( Ontology.KEGG_DRUG );
 	}
-	
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.mcisb.ontology.OntologySource#search(java.lang.String)
 	 */
 	@Override
@@ -60,7 +61,7 @@ public class KeggDrugUtils extends KeggUtils
 		{
 			return super.search( getDrugsByName( identifier ) );
 		}
-		
+
 		return new HashSet<>();
 	}
 }

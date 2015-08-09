@@ -19,7 +19,7 @@ import org.mcisb.ontology.*;
 import org.mcisb.ui.util.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class OntologyTermPanel extends ComponentPanel implements ListSelectionListener, PropertyChangeListener
@@ -28,12 +28,12 @@ public class OntologyTermPanel extends ComponentPanel implements ListSelectionLi
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 
 	 */
 	private OntologyTerm ontologyTerm;
-	
+
 	/**
 	 * 
 	 * @param message
@@ -41,7 +41,7 @@ public class OntologyTermPanel extends ComponentPanel implements ListSelectionLi
 	public OntologyTermPanel( final String message )
 	{
 		super( message, new OntologyTermList() );
-		
+
 		if( component instanceof JList )
 		{
 			final JList<?> list = (JList<?>)component;
@@ -49,9 +49,9 @@ public class OntologyTermPanel extends ComponentPanel implements ListSelectionLi
 			list.addListSelectionListener( this );
 		}
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param ontologyTerms
 	 */
 	public void setOntologyTerms( final Collection<OntologyTerm> ontologyTerms )
@@ -62,9 +62,9 @@ public class OntologyTermPanel extends ComponentPanel implements ListSelectionLi
 			SwingUtilities.invokeLater( listDataSetter );
 		}
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @return OntologyTerm
 	 */
 	public OntologyTerm getOntologyTerm()
@@ -74,13 +74,16 @@ public class OntologyTermPanel extends ComponentPanel implements ListSelectionLi
 			final Object selection = ( (JList<?>)component ).getSelectedValue();
 			return ( selection != null ) ? (OntologyTerm)selection : null;
 		}
-		
+
 		return null;
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
-	 * @see javax.swing.event.ListSelectionListener#valueChanged(javax.swing.event.ListSelectionEvent)
+	 * 
+	 * @see
+	 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.event
+	 * .ListSelectionEvent)
 	 */
 	@Override
 	public void valueChanged( ListSelectionEvent e )
@@ -93,7 +96,9 @@ public class OntologyTermPanel extends ComponentPanel implements ListSelectionLi
 
 	/*
 	 * (non-Javadoc)
-	 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
+	 * 
+	 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.
+	 * PropertyChangeEvent)
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -104,22 +109,23 @@ public class OntologyTermPanel extends ComponentPanel implements ListSelectionLi
 			setOntologyTerms( (Collection<OntologyTerm>)evt.getNewValue() );
 		}
 	}
-	
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.mcisb.ui.util.ComponentPanel#dispose()
 	 */
 	@Override
 	public void dispose() throws Exception
 	{
 		super.dispose();
-		
+
 		if( component instanceof JList )
 		{
 			( (JList<?>)component ).addListSelectionListener( this );
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param ontologyTerm
@@ -130,7 +136,7 @@ public class OntologyTermPanel extends ComponentPanel implements ListSelectionLi
 		this.ontologyTerm = ontologyTerm;
 		firePropertyChange( PropertyNames.ONTOLOGY_TERM, oldOntologyTerm, ontologyTerm );
 	}
-	
+
 	/**
 	 * 
 	 * @author neilswainston
@@ -141,12 +147,12 @@ public class OntologyTermPanel extends ComponentPanel implements ListSelectionLi
 		 * 
 		 */
 		private final Collection<OntologyTerm> ontologyTerms;
-		
+
 		/**
 		 * 
 		 */
 		private final JList<Object> parentComponent;
-		
+
 		/**
 		 * 
 		 * @param ontologyTerms
@@ -156,9 +162,10 @@ public class OntologyTermPanel extends ComponentPanel implements ListSelectionLi
 			this.ontologyTerms = ontologyTerms;
 			this.parentComponent = parentComponent;
 		}
-		
+
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see java.lang.Runnable#run()
 		 */
 		@Override

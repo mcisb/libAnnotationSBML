@@ -15,7 +15,7 @@ import org.junit.*;
 
 /**
  * 
- *
+ * 
  * @author Neil Swainston
  */
 public class DefaultOntologySourceTest
@@ -24,51 +24,51 @@ public class DefaultOntologySourceTest
 	 * 
 	 */
 	private final static String ONTOLOGY_NAME = Ontology.HMDB;
-	
+
 	/**
 	 * 
 	 */
 	private final static String TERM_ID = "HMDB00122"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	private final OntologyTerm ontologyTerm = new DefaultOntologySource( ONTOLOGY_NAME ).getOntologyTerm( TERM_ID );
-	
+
 	/**
 	 * 
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	public DefaultOntologySourceTest() throws Exception
 	{
 		// No implementation.
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
-	@Test 
+	@Test
 	public void getOntologyName() throws Exception
 	{
 		Assert.assertEquals( ontologyTerm.getOntology(), OntologyFactory.getOntology( ONTOLOGY_NAME ) );
 	}
-	
+
 	/**
 	 *
 	 */
-	@Test 	
+	@Test
 	public void getId()
 	{
 		Assert.assertEquals( ontologyTerm.getId(), TERM_ID );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
-	@Test 	
+	@Test
 	public void getName() throws Exception
 	{
 		Assert.assertEquals( ontologyTerm.getName(), null );

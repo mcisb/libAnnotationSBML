@@ -15,7 +15,7 @@ import org.junit.*;
 import org.mcisb.ontology.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class GeneUtilsTest
@@ -26,7 +26,7 @@ public class GeneUtilsTest
 	private OntologySource utils = GeneUtils.getInstance();
 
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	public GeneUtilsTest() throws Exception
@@ -35,7 +35,7 @@ public class GeneUtilsTest
 	}
 
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -46,7 +46,7 @@ public class GeneUtilsTest
 	}
 
 	/**
-	 *
+	 * 
 	 * @param ontologyTerm
 	 * @throws Exception
 	 */

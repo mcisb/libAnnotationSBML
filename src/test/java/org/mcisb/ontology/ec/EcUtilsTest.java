@@ -14,7 +14,7 @@ package org.mcisb.ontology.ec;
 import org.junit.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class EcUtilsTest
@@ -23,18 +23,18 @@ public class EcUtilsTest
 	 * 
 	 */
 	private EcUtils utils = EcUtils.getInstance();
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	public EcUtilsTest() throws Exception
 	{
 		// No implementation.
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -43,13 +43,13 @@ public class EcUtilsTest
 		Assert.assertNotNull( utils.getOntologyTerm( "1.-.-.-" ) ); //$NON-NLS-1$
 		Assert.assertNotNull( utils.getOntologyTerm( "1.1.-.-" ) ); //$NON-NLS-1$
 		Assert.assertNotNull( utils.getOntologyTerm( "1.1.1.-" ) ); //$NON-NLS-1$
-		
+
 		getOntologyTerm( "4.1.99.12" ); //$NON-NLS-1$
 		getOntologyTerm( "ec:4.1.99.12" ); //$NON-NLS-1$
 		// getOntologyTerm( "EC 4.1.99.12" ); //$NON-NLS-1$
 		// getOntologyTerm( "noise noise noise 4.1.99.12 noise noise noise" ); //$NON-NLS-1$
 	}
-	
+
 	/**
 	 * 
 	 * @throws Exception
@@ -62,9 +62,9 @@ public class EcUtilsTest
 		Assert.assertTrue( utils.matches( "10.-.-.-", "10.1.1.7" ) ); //$NON-NLS-1$ //$NON-NLS-2$
 		Assert.assertFalse( utils.matches( "10.1.1.7", "10.1.1.8" ) ); //$NON-NLS-1$ //$NON-NLS-2$
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param identifier
 	 * @throws Exception
 	 */
@@ -73,9 +73,9 @@ public class EcUtilsTest
 		final EcTerm ontologyTerm = (EcTerm)utils.getOntologyTerm( identifier );
 		test( ontologyTerm );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param ontologyTerm
 	 * @throws Exception
 	 */

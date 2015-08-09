@@ -14,7 +14,7 @@ package org.mcisb.ontology.chebi;
 import uk.ac.ebi.chebi.webapps.chebiWS.client.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class ChebiWebServiceClientFactory
@@ -23,12 +23,12 @@ public class ChebiWebServiceClientFactory
 	 * 
 	 */
 	public static final int MAXIMUM_SEARCH_RESULTS = 50;
-	
+
 	/**
 	 * 
 	 */
 	private static ChebiWebServiceClient client = null;
-	
+
 	/**
 	 * 
 	 * @return ChebiWebServiceClient
@@ -39,7 +39,7 @@ public class ChebiWebServiceClientFactory
 		{
 			client = new ChebiWebServiceClient();
 		}
-		
+
 		return client;
 	}
 }

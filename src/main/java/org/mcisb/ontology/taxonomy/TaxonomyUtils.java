@@ -23,7 +23,7 @@ public class TaxonomyUtils extends DefaultOntologySource
 	 * 
 	 */
 	private static TaxonomyUtils utils = null;
-	
+
 	/**
 	 * 
 	 * @return ChebiUtils
@@ -35,10 +35,10 @@ public class TaxonomyUtils extends DefaultOntologySource
 		{
 			utils = new TaxonomyUtils();
 		}
-		
+
 		return utils;
 	}
-	
+
 	/**
 	 * 
 	 * @throws Exception
@@ -47,9 +47,10 @@ public class TaxonomyUtils extends DefaultOntologySource
 	{
 		super( Ontology.TAXONOMY );
 	}
-	
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.mcisb.ontology.OntologySource#getOntologyTerm(java.lang.String)
 	 */
 	@Override

@@ -22,9 +22,9 @@ import org.mcisb.util.xml.*;
  * @author Neil Swainston
  */
 public class PubChemUtils extends DefaultOntologySource
-{	
+{
 	/**
-	 *
+	 * 
 	 * @param ontologyName
 	 * @throws Exception
 	 */
@@ -32,9 +32,10 @@ public class PubChemUtils extends DefaultOntologySource
 	{
 		super( ontologyName );
 	}
-	
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.mcisb.ontology.OntologySource#getOntologyTerm(java.lang.String)
 	 */
 	@Override
@@ -42,9 +43,10 @@ public class PubChemUtils extends DefaultOntologySource
 	{
 		return new PubChemTerm( ontology.getName(), id );
 	}
-	
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.mcisb.ontology.OntologySource#search(java.lang.String)
 	 */
 	@Override
@@ -54,15 +56,15 @@ public class PubChemUtils extends DefaultOntologySource
 		final Collection<OntologyTerm> ontologyTerms = new LinkedHashSet<>();
 		final String database = ontology.getName().equals( Ontology.PUBCHEM_COMPOUND ) ? "compound" : "substance"; //$NON-NLS-1$ //$NON-NLS-2$
 		final URL url = new URL( "https://pubchem.ncbi.nlm.nih.gov/rest/pug/" + database + "/name/" + identifier + "/cids/XML?name_type=word" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		
-		try( final InputStream is = url.openStream() )
+
+		try ( final InputStream is = url.openStream() )
 		{
 			for( String id : XmlUtils.getElements( ID, is, true ) )
 			{
 				ontologyTerms.add( getOntologyTermFromId( id ) );
 			}
 		}
-		
-    	return ontologyTerms;
+
+		return ontologyTerms;
 	}
 }

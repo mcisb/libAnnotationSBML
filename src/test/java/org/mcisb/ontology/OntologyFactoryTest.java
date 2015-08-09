@@ -15,7 +15,7 @@ import org.junit.*;
 
 /**
  * 
- *
+ * 
  * @author Neil Swainston
  */
 public class OntologyFactoryTest
@@ -24,40 +24,40 @@ public class OntologyFactoryTest
 	 * 
 	 */
 	private final static String ONTOLOGY_NAME = Ontology.CHEBI;
-	
+
 	/**
 	 * 
 	 */
 	private final static String ONTOLOGY_URI = "http://www.ebi.ac.uk/chebi/#ChEBI:12345"; //$NON-NLS-1$
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@SuppressWarnings("static-method")
-	@Test 
+	@Test
 	public void getOntologies() throws Exception
 	{
 		Assert.assertTrue( OntologyFactory.getOntologies().contains( OntologyFactory.getOntology( ONTOLOGY_NAME ) ) );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@SuppressWarnings("static-method")
-	@Test 	
+	@Test
 	public void getOntology() throws Exception
 	{
 		Assert.assertEquals( OntologyFactory.getOntology( ONTOLOGY_NAME ).getName(), ONTOLOGY_NAME );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@SuppressWarnings("static-method")
-	@Test 	
+	@Test
 	public void getOntologyFromURI() throws Exception
 	{
 		Assert.assertEquals( OntologyFactory.getOntologyFromUri( ONTOLOGY_URI ).getName(), ONTOLOGY_NAME );

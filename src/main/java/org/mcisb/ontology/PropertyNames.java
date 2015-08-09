@@ -21,7 +21,7 @@ public abstract class PropertyNames
 	 * 
 	 */
 	public static final String ONTOLOGY_SOURCE = "ONTOLOGY_SOURCE"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */

@@ -28,7 +28,7 @@ public class OntologyTermXmlWriter extends XmlWriter
 	 * 
 	 */
 	private final static String TERM_URI = "uri"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 * @param os
@@ -38,7 +38,7 @@ public class OntologyTermXmlWriter extends XmlWriter
 	{
 		super( XMLOutputFactory.newInstance().createXMLEventWriter( os ) );
 	}
-	
+
 	/**
 	 * 
 	 * @param ontologyTerm
@@ -55,24 +55,24 @@ public class OntologyTermXmlWriter extends XmlWriter
 		final String SPACE = " "; //$NON-NLS-1$
 		final String SCHEMA_LOCATION = NAMESPACE + SPACE + schema;
 		final String ONTOLOGY_TERM = "OntologyTerm"; //$NON-NLS-1$
-		
+
 		writeStartDocument();
 		writeStartElement( ONTOLOGY_TERM );
 		writeNamespace( PREFIX, URI );
 		writeAttribute( XMLNS, NAMESPACE );
 		writeAttribute( XSI_SCHEMA_LOCATION, SCHEMA_LOCATION );
-		
+
 		writeAttribute( TERM_URI, ontologyTerm.toUri() );
 		writeNames( ontologyTerm );
 		writeLink( ontologyTerm.getLink() );
 		writeXrefs( ontologyTerm.getXrefs() );
-		
+
 		writeEndElement( ONTOLOGY_TERM );
 		writeEndDocument();
-		
+
 		close();
 	}
-	
+
 	/**
 	 * 
 	 * @param ontologyTerm
@@ -85,11 +85,11 @@ public class OntologyTermXmlWriter extends XmlWriter
 		final String TYPE = "type"; //$NON-NLS-1$
 		final String RECOMMENDED = "recommended"; //$NON-NLS-1$
 		final String SYNONYM = "synonym"; //$NON-NLS-1$
-		
+
 		writeStartElement( NAMES );
-		
+
 		final String name = ontologyTerm.getName();
-		
+
 		if( name != null )
 		{
 			writeStartElement( NAME );
@@ -97,7 +97,7 @@ public class OntologyTermXmlWriter extends XmlWriter
 			writeCharacters( name );
 			writeEndElement( NAME );
 		}
-		
+
 		for( Iterator<String> iterator = ontologyTerm.getSynonyms().iterator(); iterator.hasNext(); )
 		{
 			writeStartElement( NAME );
@@ -105,10 +105,10 @@ public class OntologyTermXmlWriter extends XmlWriter
 			writeCharacters( iterator.next() );
 			writeEndElement( NAME );
 		}
-		
+
 		writeEndElement( NAMES );
 	}
-	
+
 	/**
 	 * 
 	 * @param link
@@ -124,7 +124,7 @@ public class OntologyTermXmlWriter extends XmlWriter
 			writeEndElement( LINK );
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param xrefs
@@ -135,20 +135,20 @@ public class OntologyTermXmlWriter extends XmlWriter
 		final String XREFS = "XREFS"; //$NON-NLS-1$
 		final String XREF = "XREF"; //$NON-NLS-1$
 		final String BIOLOGICAL_QUALIFIER = "BIOLOGICAL_QUALIFIER"; //$NON-NLS-1$
-		
+
 		writeStartElement( XREFS );
-		
+
 		for( Iterator<Map.Entry<OntologyTerm,Object[]>> iterator = xrefs.entrySet().iterator(); iterator.hasNext(); )
 		{
 			final Map.Entry<OntologyTerm,Object[]> entry = iterator.next();
 			final OntologyTerm ontologyTerm = entry.getKey();
-			
+
 			writeStartElement( XREF );
 			writeAttribute( BIOLOGICAL_QUALIFIER, Integer.toString( ( (CVTerm.Qualifier)entry.getValue()[ 1 ] ).ordinal() ) );
 			writeCharacters( ontologyTerm.toUri() );
 			writeEndElement( XREF );
 		}
-		
+
 		writeEndElement( XREFS );
 	}
 }

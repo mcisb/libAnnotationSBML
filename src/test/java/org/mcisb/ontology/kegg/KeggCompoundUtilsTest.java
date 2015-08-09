@@ -16,7 +16,7 @@ import org.junit.*;
 import org.mcisb.ontology.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class KeggCompoundUtilsTest
@@ -25,18 +25,18 @@ public class KeggCompoundUtilsTest
 	 * 
 	 */
 	private KeggCompoundUtils utils = KeggCompoundUtils.getInstance();
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	public KeggCompoundUtilsTest() throws Exception
 	{
 		// No implementation.
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -45,9 +45,9 @@ public class KeggCompoundUtilsTest
 		final OntologyTerm ontologyTerm = utils.getOntologyTerm( "C00469" ); //$NON-NLS-1$
 		test( ontologyTerm );
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -57,19 +57,19 @@ public class KeggCompoundUtilsTest
 		Assert.assertTrue( ontologyTerm.getId().equals( "C00047" ) ); //$NON-NLS-1$
 		Assert.assertTrue( ontologyTerm.getSmiles() == null );
 	}
-	
+
 	/**
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	/*
-	@SuppressWarnings("static-method")
-	@Test
-	public void getSmiles() throws Exception
-	{
-		Assert.assertTrue( new KeggCompoundTerm( "C00031" ).getSmiles().equals( "OC[C@H]1OC(O)[C@H](O)[C@@H](O)[C@@H]1O" ) ); //$NON-NLS-1$ //$NON-NLS-2$
-	}
-	*/
-	
+	 * @SuppressWarnings("static-method")
+	 * 
+	 * @Test public void getSmiles() throws Exception { Assert.assertTrue( new
+	 * KeggCompoundTerm( "C00031" ).getSmiles().equals(
+	 * "OC[C@H]1OC(O)[C@H](O)[C@@H](O)[C@@H]1O" ) ); //$NON-NLS-1$ //$NON-NLS-2$
+	 * }
+	 */
+
 	/**
 	 * 
 	 * @throws Exception
@@ -80,9 +80,9 @@ public class KeggCompoundUtilsTest
 		final KeggReactionParticipantTerm ontologyTerm = (KeggReactionParticipantTerm)utils.getOntologyTerm( "C00002" ); //$NON-NLS-1$
 		Assert.assertTrue( ontologyTerm.getReactions().contains( "R09047" ) ); //$NON-NLS-1$
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @param ontologyTerm
 	 * @throws Exception
 	 */

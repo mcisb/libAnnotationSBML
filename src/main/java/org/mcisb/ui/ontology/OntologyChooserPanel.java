@@ -33,48 +33,47 @@ public class OntologyChooserPanel extends ParameterPanel implements Chooser, Ite
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 
 	 */
 	final DefaultListModel<Object> model = new DefaultListModel<>();
-	
+
 	/**
 	 * 
 	 */
 	private final OntologyLookupServiceClient client;
-	
+
 	/**
 	 * 
 	 */
 	private final OntologySearchAction searchAction;
-	
+
 	/**
 	 * 
 	 */
 	private final JComboBox<String> ontologyComboBox;
-	
+
 	/**
 	 * 
 	 */
 	private final JList<Object> list;
-	
+
 	/**
 	 * 
 	 */
 	private final JTextField searchTextField;
-	
+
 	/**
 	 * 
 	 */
 	private final HyperlinkLabel olsLabel;
-	
+
 	/**
 	 * 
 	 */
 	private transient MouseListener mouseListener;
-	
-	
+
 	/**
 	 * 
 	 * @param title
@@ -87,19 +86,19 @@ public class OntologyChooserPanel extends ParameterPanel implements Chooser, Ite
 		super( title );
 
 		client = new OntologyLookupServiceClient();
-		
+
 		list = new JList<>( model );
 		list.setSelectionMode( ListSelectionModel.MULTIPLE_INTERVAL_SELECTION );
 		list.getSelectionModel().addListSelectionListener( this );
 
 		ontologyComboBox = new JComboBox<>( new Vector<>( new TreeSet<>( OntologyLookupServiceClient.getOntologyNames().keySet() ) ) );
 		ontologyComboBox.addItemListener( this );
-		
+
 		final int COLUMNS = 10;
 		searchTextField = new JTextField( COLUMNS );
 		searchTextField.addMouseListener( getMouseListener() );
 		searchTextField.addFocusListener( this );
-		
+
 		searchAction = new OntologySearchAction( client );
 		searchAction.addPropertyChangeListener( this );
 		searchAction.setOntologyName( (String)ontologyComboBox.getSelectedItem() );
@@ -116,19 +115,21 @@ public class OntologyChooserPanel extends ParameterPanel implements Chooser, Ite
 		add( new JScrollPane( list ), 0, 2, true, false, GridBagConstraints.BOTH, GridBagConstraints.REMAINDER );
 		add( olsLabel, 0, 3, true, true, GridBagConstraints.HORIZONTAL, GridBagConstraints.REMAINDER );
 	}
-	
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.mcisb.ui.util.Chooser#clearSelection()
 	 */
 	@Override
-	public void clearSelection() 
+	public void clearSelection()
 	{
 		list.clearSelection();
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.mcisb.ui.util.Chooser#getSelection()
 	 */
 	@Override
@@ -139,16 +140,18 @@ public class OntologyChooserPanel extends ParameterPanel implements Chooser, Ite
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.mcisb.ui.util.Chooser#setSelection(java.lang.Object)
 	 */
 	@Override
 	public void setSelection( Object object )
 	{
-		list.setSelectedValue( object , true );
+		list.setSelectedValue( object, true );
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.mcisb.util.Disposable#dispose()
 	 */
 	@Override
@@ -156,57 +159,66 @@ public class OntologyChooserPanel extends ParameterPanel implements Chooser, Ite
 	{
 		list.getSelectionModel().removeListSelectionListener( this );
 		ontologyComboBox.removeItemListener( this );
-		
+
 		searchAction.removePropertyChangeListener( this );
 		olsLabel.dispose();
-		
+
 		searchTextField.removeMouseListener( getMouseListener() );
 		searchTextField.addFocusListener( this );
 	}
-	
+
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ItemListener#itemStateChanged(java.awt.event.ItemEvent)
+	 * 
+	 * @see
+	 * java.awt.event.ItemListener#itemStateChanged(java.awt.event.ItemEvent)
 	 */
 	@Override
 	public void itemStateChanged( ItemEvent e )
 	{
 		searchAction.setOntologyName( (String)e.getItem() );
 	}
-	
+
 	/*
 	 * (non-Javadoc)
-	 * @see javax.swing.event.ListSelectionListener#valueChanged(javax.swing.event.ListSelectionEvent)
+	 * 
+	 * @see
+	 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.event
+	 * .ListSelectionEvent)
 	 */
 	@Override
 	public void valueChanged( @SuppressWarnings("unused") ListSelectionEvent e )
 	{
 		setValid( list.getSelectedValuesList().size() > 0 );
 	}
-	
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.event.FocusListener#focusGained(java.awt.event.FocusEvent)
 	 */
 	@Override
-	public void focusGained( @SuppressWarnings("unused") final FocusEvent e ) 
+	public void focusGained( @SuppressWarnings("unused") final FocusEvent e )
 	{
-		// No implementation.	
+		// No implementation.
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.event.FocusListener#focusLost(java.awt.event.FocusEvent)
 	 */
 	@Override
 	public void focusLost( @SuppressWarnings("unused") final FocusEvent e )
 	{
-		searchAction.setSearchTerm( searchTextField.getText() );	
+		searchAction.setSearchTerm( searchTextField.getText() );
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
+	 * 
+	 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.
+	 * PropertyChangeEvent)
 	 */
 	@Override
 	public void propertyChange( final PropertyChangeEvent e )
@@ -217,6 +229,7 @@ public class OntologyChooserPanel extends ParameterPanel implements Chooser, Ite
 			{
 				/*
 				 * (non-Javadoc)
+				 * 
 				 * @see java.lang.Runnable#run()
 				 */
 				@Override
@@ -225,11 +238,11 @@ public class OntologyChooserPanel extends ParameterPanel implements Chooser, Ite
 					synchronized( model )
 					{
 						model.clear();
-						
+
 						if( e.getNewValue() instanceof Collection )
 						{
 							final Collection<Object> options = new TreeSet<>( (Collection<?>)e.getNewValue() );
-							
+
 							for( Iterator<Object> iterator = options.iterator(); iterator.hasNext(); )
 							{
 								model.addElement( iterator.next() );
@@ -238,11 +251,11 @@ public class OntologyChooserPanel extends ParameterPanel implements Chooser, Ite
 					}
 				}
 			};
-			
+
 			SwingUtilities.invokeLater( runnable );
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @return MouseListener
@@ -253,7 +266,7 @@ public class OntologyChooserPanel extends ParameterPanel implements Chooser, Ite
 		{
 			mouseListener = new JMenuMouseListener( new JTextComponentMenu() );
 		}
-		
+
 		return mouseListener;
 	}
 }

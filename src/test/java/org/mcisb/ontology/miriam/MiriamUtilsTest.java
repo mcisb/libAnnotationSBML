@@ -15,24 +15,24 @@ import org.junit.*;
 
 /**
  * 
- *
+ * 
  * @author Neil Swainston
  */
 public class MiriamUtilsTest
-{	
+{
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
-	@Test 	
+	@Test
 	public void getOntologiesDownload() throws Exception
 	{
 		test( new DownloadMiriamUtils() );
 	}
-	
+
 	/**
 	 * 
-	 *
+	 * 
 	 * @param miriamUtils
 	 * @throws Exception
 	 */

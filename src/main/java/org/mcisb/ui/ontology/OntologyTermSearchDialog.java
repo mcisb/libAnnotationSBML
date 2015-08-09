@@ -17,7 +17,7 @@ import java.util.*;
 import org.mcisb.ontology.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class OntologyTermSearchDialog extends OntologyTermDialog implements PropertyChangeListener
@@ -26,17 +26,17 @@ public class OntologyTermSearchDialog extends OntologyTermDialog implements Prop
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 
 	 */
 	private final transient OntologyTermSearcher ontologyTermSearcher = new OntologyTermSearcher();
-	
+
 	/**
 	 * 
 	 */
 	private final OntologySourcePanel ontologySourcePanel;
-	
+
 	/**
 	 * @param owner
 	 * @param title
@@ -47,21 +47,22 @@ public class OntologyTermSearchDialog extends OntologyTermDialog implements Prop
 	public OntologyTermSearchDialog( final Dialog owner, final String title, final boolean modal, final String message, final Map<Object,OntologySource> ontologySourceMap )
 	{
 		super( owner, title, modal, message, null );
-		
+
 		ontologySourcePanel = new OntologySourcePanel( ontologySourceMap );
-		
+
 		ontologyTermSearcher.addPropertyChangeListener( this );
 		ontologyTermSearcher.addPropertyChangeListener( ontologyTermPanel );
 		documentListener.addPropertyChangeListener( ontologyTermSearcher );
 		ontologySourcePanel.addPropertyChangeListener( ontologyTermSearcher );
 		ontologySourcePanel.init();
-		
+
 		mainPanel.add( ontologySourcePanel, BorderLayout.NORTH );
 		pack();
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.Window#dispose()
 	 */
 	@Override
@@ -73,10 +74,12 @@ public class OntologyTermSearchDialog extends OntologyTermDialog implements Prop
 		documentListener.removePropertyChangeListener( ontologyTermSearcher );
 		ontologySourcePanel.removePropertyChangeListener( ontologyTermSearcher );
 	}
-	
+
 	/*
 	 * (non-Javadoc)
-	 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
+	 * 
+	 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.
+	 * PropertyChangeEvent)
 	 */
 	@Override
 	public void propertyChange( PropertyChangeEvent evt )

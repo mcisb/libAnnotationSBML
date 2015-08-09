@@ -16,7 +16,7 @@ import org.mcisb.ontology.*;
 import org.mcisb.util.*;
 
 /**
- *
+ * 
  * @author Neil Swainston
  */
 public class KeggGeneUtils extends KeggUtils
@@ -25,7 +25,7 @@ public class KeggGeneUtils extends KeggUtils
 	 * 
 	 */
 	private static KeggGeneUtils utils = null;
-	
+
 	/**
 	 * 
 	 * @return ChebiUtils
@@ -37,10 +37,10 @@ public class KeggGeneUtils extends KeggUtils
 		{
 			utils = new KeggGeneUtils();
 		}
-		
+
 		return utils;
 	}
-	
+
 	/**
 	 * 
 	 * @throws Exception
@@ -52,18 +52,19 @@ public class KeggGeneUtils extends KeggUtils
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.mcisb.ontology.kegg.KeggUtils#getOntologyTerm(java.lang.String)
 	 */
 	@Override
 	public OntologyTerm getOntologyTerm( final String identifier ) throws Exception
 	{
 		final Collection<String> matches = RegularExpressionUtils.getMatches( identifier.replaceAll( OntologyTerm.ENCODED_COLON, OntologyTerm.COLON ), ontology.getRegularExpression() );
-		
+
 		if( matches.size() == 1 )
 		{
 			return getOntologyTermFromId( CollectionUtils.getFirst( matches ) );
 		}
-		
+
 		return null;
 	}
 }

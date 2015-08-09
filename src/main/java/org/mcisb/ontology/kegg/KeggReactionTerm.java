@@ -31,34 +31,34 @@ public class KeggReactionTerm extends KeggTerm
 	 * 
 	 */
 	private static final String ID_PREFIX = "rn" + OntologyTerm.ENCODED_COLON; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	private static final String REACTION_SEPARATOR = "<==>"; //$NON-NLS-1$
-	
+
 	/**
 	 * 
 	 */
 	private final Map<OntologyTerm,Double> substrates = new HashMap<>();
-	
+
 	/**
 	 * 
 	 */
 	private final Map<OntologyTerm,Double> products = new HashMap<>();
-	
+
 	/**
 	 * 
 	 */
 	private String equation = null;
-	
+
 	/**
 	 * 
 	 */
 	private String definition = null;
-	
+
 	/**
-	 *
+	 * 
 	 * @param id
 	 * @throws Exception
 	 */
@@ -66,7 +66,7 @@ public class KeggReactionTerm extends KeggTerm
 	{
 		super( Ontology.KEGG_REACTION, id, ID_PREFIX );
 	}
-	
+
 	/**
 	 * 
 	 * @return String
@@ -75,44 +75,44 @@ public class KeggReactionTerm extends KeggTerm
 	public String getEquation() throws Exception
 	{
 		init();
-		
+
 		return equation;
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @return Collection
 	 * @throws Exception
 	 */
 	public Map<OntologyTerm,Double> getSubstrates() throws Exception
 	{
 		init();
-		
+
 		if( substrates.size() == 0 )
 		{
 			initReactionTerms();
 		}
-		
+
 		return substrates;
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @return Collection
 	 * @throws Exception
 	 */
 	public Map<OntologyTerm,Double> getProducts() throws Exception
 	{
 		init();
-		
+
 		if( products.size() == 0 )
 		{
 			initReactionTerms();
 		}
-		
+
 		return products;
 	}
-	
+
 	/**
 	 * 
 	 * @return Collection<OntologyTerm>
@@ -123,9 +123,10 @@ public class KeggReactionTerm extends KeggTerm
 		init();
 		return OntologyUtils.getInstance().getXrefs( xrefs.keySet(), Ontology.KEGG_PATHWAY );
 	}
-	
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.mcisb.ontology.OntologyTerm#toString()
 	 */
 	@Override
@@ -139,19 +140,21 @@ public class KeggReactionTerm extends KeggTerm
 		{
 			e.printStackTrace();
 		}
-		
+
 		return definition;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
-	 * @see org.mcisb.ontology.kegg.KeggTerm#parseProperty(java.lang.String, java.util.List)
+	 * 
+	 * @see org.mcisb.ontology.kegg.KeggTerm#parseProperty(java.lang.String,
+	 * java.util.List)
 	 */
 	@Override
 	protected void parseProperty( final String propertyName, final List<String> values ) throws Exception
 	{
 		super.parseProperty( propertyName, values );
-		
+
 		final String ENZYME = "ENZYME"; //$NON-NLS-1$
 		final String EQUATION = "EQUATION"; //$NON-NLS-1$
 		final String DEFINITION = "DEFINITION"; //$NON-NLS-1$
@@ -161,7 +164,7 @@ public class KeggReactionTerm extends KeggTerm
 		final String EMPTY_STRING = ""; //$NON-NLS-1$
 		final String PATHWAY_REGEX = "(?<=.*)rn(\\d+)(?=.*)"; //$NON-NLS-1$
 		final String valuesString = getPropertyString( values );
-		
+
 		if( propertyName.equals( ENZYME ) )
 		{
 			for( Iterator<String> iterator = RegularExpressionUtils.getMatches( valuesString, RegularExpressionUtils.EC_REGEX ).iterator(); iterator.hasNext(); )
@@ -187,9 +190,9 @@ public class KeggReactionTerm extends KeggTerm
 			}
 		}
 	}
-	
+
 	/**
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	private void initReactionTerms() throws Exception
@@ -201,7 +204,7 @@ public class KeggReactionTerm extends KeggTerm
 			convert( tokenizer.nextToken().trim(), products );
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param term
@@ -220,25 +223,25 @@ public class KeggReactionTerm extends KeggTerm
 		final KeggUtils keggGlycanUtils = KeggGlycanUtils.getInstance();
 		final String SEPARATOR = " \\+ "; //$NON-NLS-1$
 		final String[] tokens = term.split( SEPARATOR );
-		
+
 		for( String token : tokens )
 		{
 			final StringTokenizer termTokenizer = new StringTokenizer( token.trim() );
 			double stoichiometry = DEFAULT_STOICHIOMETRY;
-			
+
 			if( termTokenizer.countTokens() == 2 )
 			{
 				final String termToken = termTokenizer.nextToken();
-				
+
 				if( NumberUtils.isDecimal( termToken ) )
 				{
 					stoichiometry = Double.parseDouble( termToken );
 				}
 			}
-			
+
 			final String identifier = termTokenizer.nextToken().replace( N, EMPTY_STRING ).replace( N_PLUS_ONE, EMPTY_STRING ).replace( M, EMPTY_STRING ).replace( N_PLUS_M, EMPTY_STRING );
 			final KeggUtils keggUtils = identifier.startsWith( "G" ) ? keggGlycanUtils : keggCompoundUtils; //$NON-NLS-1$
-			
+
 			collection.put( keggUtils.getOntologyTerm( identifier ), Double.valueOf( stoichiometry ) );
 		}
 	}
