@@ -56,7 +56,7 @@ public class SboUtilsTest
 		ontologyTermsList.add( ontologyTerm );
 		test( ontologyTerm );
 
-		ontologyTerm = (SboTerm)utils.getOntologyTerm( 29 );
+		ontologyTerm = (SboTerm)SboUtils.getOntologyTerm( 29 );
 		ontologyTermsSet.add( ontologyTerm );
 		ontologyTermsList.add( ontologyTerm );
 		test( ontologyTerm );
@@ -70,12 +70,13 @@ public class SboUtilsTest
 	 * @param ontologyTerm
 	 * @throws Exception
 	 */
+	@SuppressWarnings("static-method")
 	public void test( final SboTerm ontologyTerm ) throws Exception
 	{
 		Assert.assertTrue( ontologyTerm.getName().equals( "Henri-Michaelis-Menten rate law" ) ); //$NON-NLS-1$
 		Assert.assertTrue( ontologyTerm.getFormula().equals( "lambda(kcat, Et, S, Ks, kcat*Et*S/(Ks+S))" ) ); //$NON-NLS-1$
 		Assert.assertTrue( ontologyTerm.getIntId() == 29 );
-		Assert.assertTrue( utils.getShortName( ontologyTerm.getRawMath(), 373 ).equals( "Ks" ) ); //$NON-NLS-1$
+		Assert.assertTrue( SboUtils.getShortName( ontologyTerm.getRawMath(), 373 ).equals( "Ks" ) ); //$NON-NLS-1$
 
 		final KineticLaw kineticLaw = new KineticLaw();
 		kineticLaw.setMath( JSBML.readMathMLFromString( ontologyTerm.getMath() ) );

@@ -12,10 +12,10 @@
 package org.mcisb.ontology.chebi;
 
 import java.util.*;
-import libchebi.*;
 import org.mcisb.ontology.*;
 import org.mcisb.util.*;
 import org.sbml.jsbml.*;
+import uk.co.synbiochem.libchebi.*;
 
 /**
  * 

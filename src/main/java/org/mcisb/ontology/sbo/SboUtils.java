@@ -12,12 +12,9 @@
 package org.mcisb.ontology.sbo;
 
 import java.io.*;
-import java.util.*;
 import org.mcisb.ontology.*;
 import org.mcisb.util.*;
 import org.mcisb.util.xml.*;
-import uk.ac.ebi.sbo.common.*;
-import uk.ac.ebi.sbo.ws.client.*;
 
 /**
  * 
@@ -113,11 +110,6 @@ public class SboUtils extends OntologySource
 	/**
 	 * 
 	 */
-	private final SBOLink link = new SBOLink();
-
-	/**
-	 * 
-	 */
 	private static SboUtils utils = null;
 
 	/**
@@ -163,74 +155,15 @@ public class SboUtils extends OntologySource
 		return getOntologyTerm( Integer.parseInt( normalisedId ) );
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.mcisb.ontology.OntologySource#search(java.lang.String,
-	 * java.lang.String)
-	 */
-	@Override
-	public Collection<OntologyTerm> search( final String identifier ) throws Exception
-	{
-		final List<Term> terms = link.search( identifier );
-		final Collection<OntologyTerm> ontologyTerms = new ArrayList<>();
-
-		if( terms != null )
-		{
-			for( Term term : terms )
-			{
-				ontologyTerms.add( getOntologyTerm( term ) );
-			}
-		}
-
-		return ontologyTerms;
-	}
-
 	/**
 	 * 
 	 * @param sboTerm
 	 * @return OntologyTerm
 	 * @throws Exception
 	 */
-	public OntologyTerm getOntologyTerm( final int sboTerm ) throws Exception
+	public static OntologyTerm getOntologyTerm( final int sboTerm ) throws Exception
 	{
-		return getOntologyTerm( link.convertId( Integer.valueOf( sboTerm ) ) );
-	}
-
-	/**
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public Term[] getTree( final int id )
-	{
-		final List<Term> terms = link.getTree( link.convertId( Integer.valueOf( id ) ) );
-		return terms.toArray( new Term[ terms.size() ] );
-	}
-
-	/**
-	 * 
-	 * @param termId
-	 * @param parentId
-	 * @return
-	 */
-	public boolean isChildOf( final int termId, final int parentId )
-	{
-		return link.isChildOf( link.convertId( Integer.valueOf( termId ) ), link.convertId( Integer.valueOf( parentId ) ) );
-	}
-
-	/**
-	 * 
-	 * @param term
-	 * @return OntologyTerm
-	 * @throws Exception
-	 */
-	public static OntologyTerm getOntologyTerm( final Term term ) throws Exception
-	{
-		final SboTerm ontologyTerm = new SboTerm( term.getIdentifier() );
-		ontologyTerm.setName( term.getName() );
-		ontologyTerm.setMath( term.getMathml() );
-		return ontologyTerm;
+		return new SboTerm( String.format( "SBO:%07d", Integer.valueOf( sboTerm ) ) ); //$NON-NLS-1$
 	}
 
 	/**
@@ -240,15 +173,11 @@ public class SboUtils extends OntologySource
 	 * @return String
 	 * @throws Exception
 	 */
-	public String getShortName( final String math, final int sboTerm ) throws Exception
+	public static String getShortName( final String math, final int sboTerm ) throws Exception
 	{
 		final String CI = "ci"; //$NON-NLS-1$
 		final String PREFIX = "http://biomodels.net/SBO/#"; //$NON-NLS-1$
-		final String attributeValue = PREFIX + getOntologyTerm( sboTerm ).getId().replaceAll( OntologyTerm.ENCODED_COLON, OntologyTerm.COLON ); // SBO
-																																				// is
-																																				// using
-																																				// old-style
-																																				// URLs
+		final String attributeValue = PREFIX + getOntologyTerm( sboTerm ).getId().replaceAll( OntologyTerm.ENCODED_COLON, OntologyTerm.COLON ); // SBO																																	// URLs
 		return CollectionUtils.getFirst( XmlUtils.getElementValues( CI, attributeValue, new ByteArrayInputStream( math.getBytes() ) ) );
 	}
 }
