@@ -7,7 +7,7 @@
   
   <name>libAnnotationSBML</name>
   <description>libAnnotationSBML</description>
-  <url>https://github.com/mcisb/libAnnotationSBML-core</url>
+  <url>https://github.com/mcisb/libAnnotationSBML</url>
   
   <licenses>
     <license>
@@ -17,7 +17,7 @@
   </licenses>
   
   <scm>
-    <url>https://github.com/mcisb/mcisb-core</url>
+    <url>https://github.com/mcisb/libAnnotationSBML</url>
     <connection>scm:git:https://github.com/mcisb/libAnnotationSBML.git</connection>
     <developerConnection>scm:git:https://github.com/mcisb/libAnnotationSBML.git</developerConnection>
   </scm>

@@ -12,7 +12,7 @@
 package org.mcisb.ontology.sbo;
 
 import org.mcisb.ontology.*;
-import org.sbml.jsbml.*;
+// import org.sbml.jsbml.*;
 
 /**
  * 
@@ -28,12 +28,12 @@ public class SboTerm extends OntologyTerm
 	/**
 	 * 
 	 */
-	private String rawMath = null;
+	// private String rawMath = null;
 
 	/**
 	 * 
 	 */
-	private String math = null;
+	// private String math = null;
 
 	/**
 	 * 
@@ -58,33 +58,40 @@ public class SboTerm extends OntologyTerm
 	 * 
 	 * @return String
 	 */
+	/*
 	public String getFormula()
 	{
 		return JSBML.formulaToString( JSBML.readMathMLFromString( math ) );
 	}
-
+	*/
+	
 	/**
 	 * 
 	 * @return math
 	 */
+	/*
 	public String getMath()
 	{
 		return math;
 	}
-
+	*/
+	
 	/**
 	 * 
 	 * @return math
 	 */
+	/*
 	public String getRawMath()
 	{
 		return rawMath;
 	}
-
+	*/
+	
 	/**
 	 * 
 	 * @param math
 	 */
+	/*
 	public void setMath( final String math )
 	{
 		final String DUPLICATE_NAMESPACE = "xmlns=\"http://www.w3.org/1998/Math/MathML\" xmlns=\"http://www.w3.org/1998/Math/MathML\""; //$NON-NLS-1$
@@ -98,4 +105,5 @@ public class SboTerm extends OntologyTerm
 		final String EMPTY_STRING = ""; //$NON-NLS-1$
 		this.math = rawMath.replaceAll( INVALID_CI_PATTERN, VALID_CI_PATTERN ).replaceAll( SEMANTICS_START_PATTERN, EMPTY_STRING ).replaceAll( SEMANTICS_END_PATTERN, EMPTY_STRING );
 	}
+	*/
 }

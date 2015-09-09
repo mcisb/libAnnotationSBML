@@ -12,6 +12,7 @@
 package org.mcisb.ontology;
 
 import java.util.*;
+
 import org.mcisb.ontology.chebi.*;
 import org.mcisb.ontology.ec.*;
 import org.mcisb.ontology.gene.*;
@@ -592,11 +593,17 @@ public class OntologyUtils extends OntologySource
 			}
 		}
 
-		final Collection<ChebiTerm> intersection = (Collection<ChebiTerm>)CollectionUtils.getIntersection( Arrays.asList( parentTerms1, parentTerms2 ) );
-
-		for( final ChebiTerm parentTerm : intersection )
+		final Object intersection = CollectionUtils.getIntersection( Arrays.asList( parentTerms1, parentTerms2 ) );
+		
+		if( intersection instanceof Collection )
 		{
-			return parentTerm;
+			for( final Object parentTerm : (Collection<?>)intersection )
+			{
+				if( parentTerm instanceof ChebiTerm )
+				{
+					return (ChebiTerm)parentTerm;
+				}
+			}
 		}
 
 		parentTerms1.remove( ontologyTerm1 );
