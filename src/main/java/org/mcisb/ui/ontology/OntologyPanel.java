@@ -13,8 +13,10 @@ package org.mcisb.ui.ontology;
 
 import java.awt.*;
 import java.util.*;
+
 import javax.swing.*;
 import javax.swing.event.*;
+
 import org.mcisb.ontology.*;
 import org.mcisb.ui.tracking.*;
 import org.mcisb.ui.util.*;
@@ -78,6 +80,7 @@ public class OntologyPanel extends ObjectParameterPanel implements SampleParamet
 	@Override
 	public void setSamples( Collection<?> samples )
 	{
+		@SuppressWarnings("unchecked")
 		DefaultListModel<Object> model = ( (DefaultListModel<Object>)sampleList.getModel() );
 		model.clear();
 
@@ -183,6 +186,7 @@ public class OntologyPanel extends ObjectParameterPanel implements SampleParamet
 	 * 
 	 * @see org.mcisb.ui.tracking.Manager#deleteObject()
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void deleteObject()
 	{
@@ -236,6 +240,7 @@ public class OntologyPanel extends ObjectParameterPanel implements SampleParamet
 			{
 				for( int i = 0; i < ontologyTerms.length; i++ )
 				{
+					@SuppressWarnings("unchecked")
 					final DefaultListModel<Object> defaultListModel = (DefaultListModel<Object>)listModel;
 
 					if( !defaultListModel.contains( ontologyTerms[ i ] ) )

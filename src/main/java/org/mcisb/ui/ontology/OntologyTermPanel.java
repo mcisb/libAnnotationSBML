@@ -13,8 +13,10 @@ package org.mcisb.ui.ontology;
 
 import java.beans.*;
 import java.util.*;
+
 import javax.swing.*;
 import javax.swing.event.*;
+
 import org.mcisb.ontology.*;
 import org.mcisb.ui.util.*;
 
@@ -58,6 +60,7 @@ public class OntologyTermPanel extends ComponentPanel implements ListSelectionLi
 	{
 		if( component instanceof JList )
 		{
+			@SuppressWarnings("unchecked")
 			final Runnable listDataSetter = new ListDataSetter( (JList<Object>)component, ontologyTerms );
 			SwingUtilities.invokeLater( listDataSetter );
 		}
