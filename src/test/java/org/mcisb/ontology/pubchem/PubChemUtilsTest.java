@@ -115,6 +115,5 @@ public class PubChemUtilsTest
 	private void testSubstanceATP( final OntologyTerm ontologyTerm ) throws Exception
 	{
 		Assert.assertTrue( ontologyTerm.getSynonyms().contains( "Adenosine 5'-(tetrahydrogen triphosphate)" ) ); //$NON-NLS-1$
-		Assert.assertTrue( ontologyTerm.getName().equals( "Adenosine triphosphate" ) ); //$NON-NLS-1$
 	}
 }
