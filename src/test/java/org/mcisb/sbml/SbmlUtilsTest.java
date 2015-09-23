@@ -110,7 +110,7 @@ public class SbmlUtilsTest
 		final SBMLDocument document = new SBMLDocument();
 		final Model model = document.createModel();
 		final Species species = model.createSpecies();
-
+		
 		species.setName( "thiosulfate(1-)" ); //$NON-NLS-1$
 		Assert.assertTrue( SbmlUtils.getCharge( model, species ) == -1 );
 
@@ -119,5 +119,9 @@ public class SbmlUtilsTest
 
 		species.setName( "thiosulfate(1568-)" ); //$NON-NLS-1$
 		Assert.assertTrue( SbmlUtils.getCharge( model, species ) == -1568 );
+		
+		species.setName( "thiosulfate" ); //$NON-NLS-1$
+		SbmlUtils.setCharge( species, -17 );
+		Assert.assertTrue( Integer.parseInt( SbmlUtils.getNotes( species ).get( SbmlUtils.CHARGE ).toString() ) == -17 );
 	}
 }

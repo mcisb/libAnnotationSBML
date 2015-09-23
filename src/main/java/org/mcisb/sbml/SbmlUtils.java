@@ -1324,9 +1324,9 @@ public class SbmlUtils
 	 */
 	public static void setNotes( final SBase sbase, final Map<String,Object> notes ) throws XMLStreamException
 	{
-		final String PARAGRAPH = "<p>"; //$NON-NLS-1$
+		final String PARAGRAPH = "<html:p>"; //$NON-NLS-1$
 		final String SEPARATOR = ": "; //$NON-NLS-1$
-		final String PARAGRAPH_END = "</p>"; //$NON-NLS-1$
+		final String PARAGRAPH_END = "</html:p>"; //$NON-NLS-1$
 		sbase.unsetNotes();
 
 		if( notes.size() > 0 )
@@ -1334,7 +1334,7 @@ public class SbmlUtils
 			final Map<String,Object> orderedNotes = new TreeMap<>();
 			orderedNotes.putAll( notes );
 
-			final StringBuffer buffer = new StringBuffer( "<body xmlns=\"http://www.w3.org/1999/xhtml\">" ); //$NON-NLS-1$
+			final StringBuffer buffer = new StringBuffer( "<html:body xmlns:html=\"http://www.w3.org/1999/xhtml\">" ); //$NON-NLS-1$
 
 			for( Map.Entry<String,Object> entry : orderedNotes.entrySet() )
 			{
@@ -1352,7 +1352,7 @@ public class SbmlUtils
 				buffer.append( PARAGRAPH_END );
 			}
 
-			buffer.append( "</body>" ); //$NON-NLS-1$
+			buffer.append( "</html:body>" ); //$NON-NLS-1$
 			sbase.setNotes( buffer.toString() );
 		}
 	}
