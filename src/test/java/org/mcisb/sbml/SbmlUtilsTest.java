@@ -15,6 +15,9 @@ import java.io.*;
 import java.net.*;
 import java.nio.charset.*;
 import java.util.*;
+
+import javax.xml.stream.XMLStreamException;
+
 import org.junit.*;
 import org.mcisb.ontology.*;
 import org.mcisb.util.io.*;
@@ -123,5 +126,19 @@ public class SbmlUtilsTest
 		species.setName( "thiosulfate" ); //$NON-NLS-1$
 		SbmlUtils.setCharge( species, -17 );
 		Assert.assertTrue( Integer.parseInt( SbmlUtils.getNotes( species ).get( SbmlUtils.CHARGE ).toString() ) == -17 );
+	}
+	
+	/**
+	 * @throws XMLStreamException 
+	 * @throws IOException 
+	 */
+	@Test
+	public void testRead() throws XMLStreamException, IOException
+	{
+		try( final InputStream is = getClass().getClassLoader().getResourceAsStream( "org/mcisb/sbml/test.xml" ) ) //$NON-NLS-1$
+		{
+			final SBMLDocument doc = new SBMLReader().readSBMLFromStream( is );
+			Assert.assertTrue( doc.getModel().getNumSpecies() > 0 );
+		}
 	}
 }
