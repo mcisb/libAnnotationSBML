@@ -33,25 +33,19 @@
         </annotation>
       </species>
       <species id="a" compartment="i">
-      <!--
         <notes>
-		  <html:body xmlns:html="http://www.w3.org/1999/xhtml"><html:p>FORMULA: C</html:p><html:p>CHARGE: 0</html:p></html:body>
+		  <html:body xmlns:html="http://www.w3.org/1999/xhtml"><html:p>RANDOM: CHICKEN</html:p><html:p>FORMULA: C</html:p><html:p>CHARGE: 0</html:p></html:body>
         </notes>
-      -->
       </species>
       <species id="bb" compartment="i">
-      <!--
         <notes>
 		  <html:body xmlns:html="http://www.w3.org/1999/xhtml"><html:p>FORMULA: C</html:p><html:p>CHARGE: 0</html:p></html:body>
         </notes>
-      -->
       </species>
       <species id="c" compartment="i" boundaryCondition="true">
-      <!--
         <notes>
 		  <html:body xmlns:html="http://www.w3.org/1999/xhtml"><html:p>FORMULA: C</html:p><html:p>CHARGE: 0</html:p></html:body>
         </notes>
-      -->
       </species>
     </listOfSpecies>
     <listOfReactions>

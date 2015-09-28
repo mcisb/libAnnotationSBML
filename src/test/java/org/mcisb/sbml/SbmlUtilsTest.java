@@ -141,4 +141,18 @@ public class SbmlUtilsTest
 			Assert.assertTrue( doc.getModel().getNumSpecies() > 0 );
 		}
 	}
+	
+	/**
+	 * @throws XMLStreamException 
+	 * @throws IOException 
+	 */
+	@Test
+	public void testGetNotes() throws XMLStreamException, IOException
+	{
+		try( final InputStream is = getClass().getClassLoader().getResourceAsStream( "org/mcisb/sbml/test.xml" ) ) //$NON-NLS-1$
+		{
+			final SBMLDocument doc = new SBMLReader().readSBMLFromStream( is );
+			Assert.assertTrue( SbmlUtils.getNotes( doc.getModel().getSpecies( "a" ) ).get( "RANDOM" ).equals( "CHICKEN" ) ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
+	}
 }
