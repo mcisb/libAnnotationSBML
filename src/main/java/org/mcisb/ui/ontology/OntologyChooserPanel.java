@@ -187,7 +187,7 @@ public class OntologyChooserPanel extends ParameterPanel implements Chooser, Ite
 	 * .ListSelectionEvent)
 	 */
 	@Override
-	public void valueChanged( @SuppressWarnings("unused") ListSelectionEvent e )
+	public void valueChanged( final ListSelectionEvent e )
 	{
 		setValid( list.getSelectedValuesList().size() > 0 );
 	}
@@ -198,7 +198,7 @@ public class OntologyChooserPanel extends ParameterPanel implements Chooser, Ite
 	 * @see java.awt.event.FocusListener#focusGained(java.awt.event.FocusEvent)
 	 */
 	@Override
-	public void focusGained( @SuppressWarnings("unused") final FocusEvent e )
+	public void focusGained( final FocusEvent e )
 	{
 		// No implementation.
 	}
@@ -209,7 +209,7 @@ public class OntologyChooserPanel extends ParameterPanel implements Chooser, Ite
 	 * @see java.awt.event.FocusListener#focusLost(java.awt.event.FocusEvent)
 	 */
 	@Override
-	public void focusLost( @SuppressWarnings("unused") final FocusEvent e )
+	public void focusLost( final FocusEvent e )
 	{
 		searchAction.setSearchTerm( searchTextField.getText() );
 	}

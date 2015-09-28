@@ -201,7 +201,7 @@ public class OntologyTermDialog extends JDialog
 		 * )
 		 */
 		@Override
-		public void actionPerformed( @SuppressWarnings("unused") ActionEvent e )
+		public void actionPerformed( final ActionEvent e )
 		{
 			close( okStatus );
 		}
