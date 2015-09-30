@@ -277,7 +277,7 @@ public class OntologyTerm implements Comparable<Object>, Serializable
 	{
 		try
 		{
-			return toUri();
+			return getName();
 		}
 		catch( Exception e )
 		{
