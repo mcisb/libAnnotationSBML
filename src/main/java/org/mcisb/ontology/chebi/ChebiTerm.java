@@ -15,7 +15,7 @@ import java.util.*;
 import org.mcisb.ontology.*;
 import org.mcisb.util.*;
 import org.sbml.jsbml.*;
-import uk.co.synbiochem.libchebi.*;
+import uk.ac.manchester.libchebi.*;
 
 /**
  * 

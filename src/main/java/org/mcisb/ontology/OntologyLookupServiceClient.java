@@ -39,7 +39,6 @@ public class OntologyLookupServiceClient implements Serializable
 	 * @throws RemoteException
 	 * @throws ServiceException
 	 */
-	@SuppressWarnings("unchecked")
 	public static Map<String,String> getOntologyNames() throws RemoteException, ServiceException
 	{
 		return getQuery().getOntologyNames();
@@ -54,7 +53,6 @@ public class OntologyLookupServiceClient implements Serializable
 	 * @throws RemoteException
 	 * @throws ServiceException
 	 */
-	@SuppressWarnings("unchecked")
 	public static Map<String,String> getTermsByName( final String partialName, final String ontologyName, final boolean reverseKeyOrder ) throws RemoteException, ServiceException
 	{
 		return getQuery().getTermsByName( partialName, ontologyName, reverseKeyOrder );
@@ -81,7 +79,6 @@ public class OntologyLookupServiceClient implements Serializable
 	 * @throws RemoteException
 	 * @throws ServiceException
 	 */
-	@SuppressWarnings("unchecked")
 	public static Map<String,String> getParentTerms( final String termId, final String ontologyName ) throws RemoteException, ServiceException
 	{
 		return getQuery().getTermParents( termId, ontologyName );
