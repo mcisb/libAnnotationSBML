@@ -69,7 +69,7 @@ public class ChebiTerm extends OntologyTerm
 
 		try
 		{
-			chebiEntity = new ChebiEntity( Integer.parseInt( normaliseId( id ).replace( ChebiUtils.CHEBI_PREFIX, "" ) ) ); //$NON-NLS-1$
+			chebiEntity = new ChebiEntity( normaliseId( id ) );
 		}
 		catch( ChebiException e )
 		{
