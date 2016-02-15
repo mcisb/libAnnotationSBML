@@ -30,12 +30,7 @@ class DownloadMiriamUtils extends MiriamUtils
 	/**
 	 * 
 	 */
-	private final URL remoteUrl = new URL( "http://www.ebi.ac.uk/miriam/main/XMLExport" ); //$NON-NLS-1$
-
-	/**
-	 * 
-	 */
-	private final DownloadUtils downloadUtils;
+	private final URL remoteUrl = new URL( "http://www.ebi.ac.uk/miriam/main/export/xml/" ); //$NON-NLS-1$
 
 	/**
 	 * 
@@ -43,9 +38,7 @@ class DownloadMiriamUtils extends MiriamUtils
 	 */
 	DownloadMiriamUtils() throws MalformedURLException
 	{
-		final Map<String,Object> nameValuePairs = new HashMap<>();
-		nameValuePairs.put( "fileName", "MiriamXML" ); //$NON-NLS-1$ //$NON-NLS-2$
-		downloadUtils = new DownloadUtils( remoteUrl, nameValuePairs );
+		// No implementation.
 	}
 
 	/*
@@ -56,7 +49,7 @@ class DownloadMiriamUtils extends MiriamUtils
 	@Override
 	protected Map<String,Ontology> getOntologiesMap() throws IOException, XMLStreamException
 	{
-		return read( new String( FileUtils.read( downloadUtils.getFileContents() ) ) );
+		return read( new String( FileUtils.read( remoteUrl.openStream() ) ) );
 	}
 
 	/**
