@@ -93,7 +93,7 @@ public class GoUtils extends OntologySource
 	/**
 	 * 
 	 */
-	private final static String GO = "GO"; //$NON-NLS-1$
+	private final static String GO = "go"; //$NON-NLS-1$
 
 	/**
 	 * 
@@ -133,7 +133,7 @@ public class GoUtils extends OntologySource
 	@Override
 	protected OntologyTerm getOntologyTermFromId( final String id ) throws Exception
 	{
-		final String termId = OntologyLookupServiceClient.getTermById( id.replaceAll( OntologyTerm.ENCODED_COLON, OntologyTerm.COLON ), GO );
+		final String termId = OntologyLookupServiceClient.getTermById( id, "go" ); //$NON-NLS-1$
 
 		for( final OntologyTerm ontologyTerm : search( termId ) )
 		{
@@ -155,7 +155,7 @@ public class GoUtils extends OntologySource
 	public Collection<OntologyTerm> search( final String identifier ) throws Exception
 	{
 		final Collection<OntologyTerm> ontologyTerms = new HashSet<>();
-		final Map<String,String> terms = OntologyLookupServiceClient.getTermsByName( identifier, GO, false );
+		final Map<String,String> terms = OntologyLookupServiceClient.getTermsByName( identifier, GO );
 
 		for( Iterator<Map.Entry<String,String>> iterator = terms.entrySet().iterator(); iterator.hasNext(); )
 		{
@@ -189,25 +189,5 @@ public class GoUtils extends OntologySource
 		formattedIdentifier = formattedIdentifier.replaceAll( "^perinuclear region$", "GO:0048471" ); //$NON-NLS-1$ //$NON-NLS-2$
 
 		return super.getOntologyTerm( formattedIdentifier );
-	}
-
-	/**
-	 * 
-	 * @param ontologyTerm
-	 * @return Collection<OntologyTerm>
-	 * @throws Exception
-	 */
-	public Collection<OntologyTerm> getParents( final OntologyTerm ontologyTerm ) throws Exception
-	{
-		final Collection<OntologyTerm> parents = new LinkedHashSet<>();
-
-		final Map<String,String> parentTerms = OntologyLookupServiceClient.getParentTerms( ontologyTerm.getId().replaceAll( OntologyTerm.ENCODED_COLON, OntologyTerm.COLON ), GO );
-
-		for( String parentTerm : parentTerms.keySet() )
-		{
-			parents.add( getOntologyTerm( parentTerm ) );
-		}
-
-		return parents;
 	}
 }

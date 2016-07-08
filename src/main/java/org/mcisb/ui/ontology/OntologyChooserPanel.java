@@ -14,12 +14,13 @@ package org.mcisb.ui.ontology;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;
+import java.io.*;
 import java.net.*;
-import java.rmi.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.event.*;
-import javax.xml.rpc.*;
+
+import org.json.simple.parser.*;
 import org.mcisb.ontology.*;
 import org.mcisb.ui.util.*;
 
@@ -77,11 +78,10 @@ public class OntologyChooserPanel extends ParameterPanel implements Chooser, Ite
 	/**
 	 * 
 	 * @param title
-	 * @throws RemoteException
-	 * @throws ServiceException
-	 * @throws MalformedURLException
+	 * @throws ParseException 
+	 * @throws IOException 
 	 */
-	public OntologyChooserPanel( final String title ) throws RemoteException, ServiceException, MalformedURLException
+	public OntologyChooserPanel( final String title ) throws IOException, ParseException
 	{
 		super( title );
 

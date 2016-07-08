@@ -11,8 +11,10 @@
  *******************************************************************************/
 package org.mcisb.ontology.go;
 
-import java.rmi.*;
-import javax.xml.rpc.*;
+import java.io.*;
+import java.net.*;
+
+import org.json.simple.parser.*;
 import org.mcisb.ontology.*;
 
 /**
@@ -43,10 +45,9 @@ public class GoTerm extends OntologyTerm
 	 * @see org.mcisb.ontology.OntologyTerm#doInitialise()
 	 */
 	@Override
-	protected void doInitialise() throws RemoteException, ServiceException
+	protected void doInitialise() throws MalformedURLException, IOException, ParseException
 	{
-		final String GO = "GO"; //$NON-NLS-1$
-		name = OntologyLookupServiceClient.getTermById( id.replaceAll( OntologyTerm.ENCODED_COLON, OntologyTerm.COLON ), GO );
+		name = OntologyLookupServiceClient.getTermById( id, "go" ); //$NON-NLS-1$
 		addSynonym( name );
 	}
 }

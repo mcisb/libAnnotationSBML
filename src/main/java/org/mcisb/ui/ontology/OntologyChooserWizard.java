@@ -11,10 +11,10 @@
  *******************************************************************************/
 package org.mcisb.ui.ontology;
 
-import java.net.*;
-import java.rmi.*;
+import java.io.*;
 import java.util.*;
-import javax.xml.rpc.*;
+
+import org.json.simple.parser.*;
 import org.mcisb.ui.wizard.*;
 import org.mcisb.util.*;
 
@@ -32,11 +32,10 @@ public class OntologyChooserWizard extends Wizard
 	/**
 	 * 
 	 * @param bean
-	 * @throws ServiceException
-	 * @throws RemoteException
-	 * @throws MalformedURLException
+	 * @throws ParseException 
+	 * @throws IOException 
 	 */
-	public OntologyChooserWizard( final GenericBean bean ) throws ServiceException, RemoteException, MalformedURLException
+	public OntologyChooserWizard( final GenericBean bean ) throws IOException, ParseException
 	{
 		super( bean, null );
 

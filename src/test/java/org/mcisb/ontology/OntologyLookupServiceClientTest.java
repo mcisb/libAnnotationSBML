@@ -23,7 +23,7 @@ public class OntologyLookupServiceClientTest
 	/**
 	 * 
 	 */
-	private final static String ONTOLOGY_NAME = "CHEBI"; //$NON-NLS-1$
+	private final static String ONTOLOGY_NAME = "chebi"; //$NON-NLS-1$
 
 	/**
 	 * 
@@ -33,7 +33,7 @@ public class OntologyLookupServiceClientTest
 	/**
 	 * 
 	 */
-	private final static String TERM_ID = "CHEBI:15903"; //$NON-NLS-1$
+	private final static String TERM_ID = "CHEBI:17234"; //$NON-NLS-1$
 
 	/**
 	 * 
@@ -54,7 +54,7 @@ public class OntologyLookupServiceClientTest
 	@Test
 	public void getTermsByName() throws Exception
 	{
-		Assert.assertTrue( OntologyLookupServiceClient.getTermsByName( TERM_NAME, ONTOLOGY_NAME, false ).keySet().contains( TERM_ID ) );
+		Assert.assertTrue( OntologyLookupServiceClient.getTermsByName( TERM_NAME, ONTOLOGY_NAME ).keySet().contains( TERM_ID ) );
 	}
 
 	/**

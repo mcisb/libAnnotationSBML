@@ -90,15 +90,4 @@ public class GoUtilsTest
 		final String NAME = "cytoplasm"; //$NON-NLS-1$
 		Assert.assertTrue( ontologyTerm.getName().equals( NAME ) );
 	}
-
-	/**
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public void getParents() throws Exception
-	{
-		final GoTerm ontologyTerm = new GoTerm( "GO%3A0044429" ); //$NON-NLS-1$
-		Assert.assertTrue( utils.getParents( ontologyTerm ).contains( new GoTerm( "GO%3A0044446" ) ) ); //$NON-NLS-1$
-	}
 }

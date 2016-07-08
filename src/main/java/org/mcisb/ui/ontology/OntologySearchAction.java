@@ -172,7 +172,7 @@ public class OntologySearchAction extends AbstractAction
 
 					if( searchTerm.length() > 0 )
 					{
-						Map<String,String> terms = OntologyLookupServiceClient.getTermsByName( searchTerm.trim(), ontologyName, false );
+						Map<String,String> terms = OntologyLookupServiceClient.getTermsByName( searchTerm.trim(), ontologyName );
 
 						for( Iterator<Map.Entry<String,String>> iterator = terms.entrySet().iterator(); iterator.hasNext(); )
 						{
