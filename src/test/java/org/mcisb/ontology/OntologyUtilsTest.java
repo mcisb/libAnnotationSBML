@@ -131,8 +131,8 @@ public class OntologyUtilsTest
 		// final ChebiTerm glucose = (ChebiTerm)utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:17234" ); // glucose //$NON-NLS-1$
 		final ChebiTerm betaDglucose = (ChebiTerm)utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:15903" ); // beta-D-glucose //$NON-NLS-1$
 		final ChebiTerm glucopyranose = (ChebiTerm)utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:37661" ); // glucopyranose //$NON-NLS-1$
-		final ChebiTerm lipid = (ChebiTerm)utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:25054" ); // lipid //$NON-NLS-1$
-		final ChebiTerm cholesterol = (ChebiTerm)utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:16113" ); // cholesterol //$NON-NLS-1$
+		// final ChebiTerm lipid = (ChebiTerm)utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:25054" ); // lipid //$NON-NLS-1$
+		// final ChebiTerm cholesterol = (ChebiTerm)utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:16113" ); // cholesterol //$NON-NLS-1$
 		final ChebiTerm atp = (ChebiTerm)utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:15422" ); // ATP //$NON-NLS-1$
 		final ChebiTerm atp3minus = (ChebiTerm)utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:57299" ); // ATP 3- //$NON-NLS-1$
 		final ChebiTerm atp4minus = (ChebiTerm)utils.getOntologyTerm( "http://www.ebi.ac.uk/chebi/#CHEBI:30616" ); // ATP 4- //$NON-NLS-1$
