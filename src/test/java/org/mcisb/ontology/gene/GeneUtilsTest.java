@@ -53,7 +53,7 @@ public class GeneUtilsTest
 	@SuppressWarnings("static-method")
 	public void test( final GeneTerm ontologyTerm ) throws Exception
 	{
-		final String NAME = "SLC8A3 solute carrier family 8 (sodium/calcium exchanger), member 3"; //$NON-NLS-1$
+		final String NAME = "SLC8A3 solute carrier family 8 member A3"; //$NON-NLS-1$
 		Assert.assertTrue( ontologyTerm.getName().equals( NAME ) );
 	}
 }

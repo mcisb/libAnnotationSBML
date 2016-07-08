@@ -65,7 +65,7 @@ public class OntologyLookupServiceClient implements Serializable
 	 */
 	public static Map<String,String> getTermsByName( final String term, final String ontologyName ) throws MalformedURLException, IOException, ParseException
 	{
-		final String url = "http://www.ebi.ac.uk/ols/api/search?q=" + term + "&ontology=" + ontologyName; //$NON-NLS-1$ //$NON-NLS-2$
+		final String url = "http://www.ebi.ac.uk/ols/api/search?q=" + URLEncoder.encode( term, "UTF-8" ) + "&ontology=" + URLEncoder.encode( ontologyName, "UTF-8" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		final JSONObject json = read( url );
 		final JSONObject response = (JSONObject)json.get( "response" ); //$NON-NLS-1$
 		final JSONArray docs = (JSONArray)response.get( "docs" ); //$NON-NLS-1$
